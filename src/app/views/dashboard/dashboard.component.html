@@ -1,3 +1,7 @@
+
+<!-- Data filters -->
+<app-data-filters></app-data-filters>
+
 <!-- Info cards -->
 <!-- <app-widgets-dropdown></app-widgets-dropdown> -->
 
@@ -36,10 +40,7 @@
   </div>
 </div> -->
 
-<!-- Data filters -->
-<app-data-filters *ngIf="isFilterOpen"></app-data-filters>
-
-<c-card class="mb-5">
+<!-- <c-card class="mb-5">
   <c-card-body>
     <c-row>
       <div
@@ -47,8 +48,8 @@
       >
         <h4 class="card-title m-0" id="traffic">Areas Affected</h4>
         <div>
-          <!-- <button type="button" class="btn btn-danger btn-custom" (click)="onResetCoordinates()">Reset to Dubai</button>
-          &nbsp; -->
+          <button type="button" class="btn btn-danger btn-custom" (click)="onResetCoordinates()">Reset to Dubai</button>
+          &nbsp;
           <button
             type="button"
             class="btn btn-primary"
@@ -58,15 +59,12 @@
           </button>
         </div>
       </div>
-      <!-- OpenLayers Map One -->
       <app-map *ngIf="showMapType === 'mapOne'"></app-map>
-      <!-- OpenLayers Map Two -->
       <app-map-two *ngIf="showMapType === 'mapTwo'"></app-map-two>
-      <!-- OpenLayers Map Three -->
       <app-map-three *ngIf="showMapType === 'mapThree'"></app-map-three>
     </c-row>
   </c-card-body>
-</c-card>
+</c-card> -->
 
 <!-- <app-map></app-map> -->
 <!-- <app-widgets-dropdown></app-widgets-dropdown>
