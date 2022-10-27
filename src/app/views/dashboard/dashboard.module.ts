@@ -7,7 +7,6 @@ import {
   ButtonGroupModule,
   ButtonModule,
   CardModule,
-  FormModule,
   GridModule,
   NavModule,
   ProgressModule,
@@ -16,6 +15,7 @@ import {
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { ChartjsModule } from '@coreui/angular-chartjs';
+import { HttpClientModule } from '@angular/common/http';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -41,6 +41,7 @@ import { DataShareService } from './services/data-share.service';
     ReactiveFormsModule,
     ButtonModule,
     // FormModule,
+    HttpClientModule,
     FormsModule,
     ButtonModule,
     ButtonGroupModule,

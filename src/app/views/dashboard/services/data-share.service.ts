@@ -1,12 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { FilterFormData } from '../models/filter.model';
+import { Injectable } from '@angular/core';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class DataShareService {
   private filterFormValue: FilterFormData;
   public formValueChanged = new BehaviorSubject<FilterFormData>(null);
   // public coordinatesReset = new Subject<void>();
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   setFilterFormValue(formValue: FilterFormData): void {
     this.filterFormValue = formValue;
@@ -77,5 +82,9 @@ export class DataShareService {
 
     // Resulting point.
     return { lat: y + y0, lng: xp + x0 };
+  }
+
+  sendPatientData(formValue) {
+    return this.http.post('http://localhost:5000/patient/', formValue);
   }
 }
