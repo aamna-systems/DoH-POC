@@ -3,22 +3,30 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
 import { MapTwoComponent } from './components/map-two/map-two.component';
+import { MapThreeComponent } from './components/map-three/map-three.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     data: {
-      title: $localize`Dashboard`,
+      title: $localize`Data Generator`,
     },
   },
-  // {
-  //   path: 'map-two',
-  //   component: MapTwoComponent,
-  //   data: {
-  //     title: $localize`New Map`,
-  //   },
-  // },
+  {
+    path: 'map-two',
+    component: MapTwoComponent,
+    data: {
+      title: $localize`International Outbreak`,
+    },
+  },
+  {
+    path: 'map-three',
+    component: MapThreeComponent,
+    data: {
+      title: $localize`Epidemic Visualization`,
+    },
+  },
 ];
 
 @NgModule({

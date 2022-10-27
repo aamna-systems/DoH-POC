@@ -2,7 +2,7 @@ import { INavData } from '@coreui/angular';
 
 export const navItems: INavData[] = [
   {
-    name: 'Dashboard',
+    name: 'Data Generator',
     url: '/dashboard',
     iconComponent: { name: 'cil-speedometer' },
     badge: {
@@ -10,15 +10,24 @@ export const navItems: INavData[] = [
       text: '',
     },
   },
-  // {
-  //   name: 'Map 2',
-  //   url: '/dashboard/map-two',
-  //   iconComponent: { name: 'cil-drop' },
-  //   badge: {
-  //     color: 'info',
-  //     text: '',
-  //   },
-  // },
+  {
+    name: 'International Outbreak',
+    url: '/dashboard/map-two',
+    iconComponent: { name: 'cil-drop' },
+    badge: {
+      color: 'info',
+      text: '',
+    },
+  },
+  {
+    name: 'Epidemic Visualization',
+    url: '/dashboard/map-three',
+    iconComponent: { name: 'cil-chart-pie' },
+    badge: {
+      color: 'info',
+      text: '',
+    },
+  },
   // {
   //   title: true,
   //   name: 'Theme',
