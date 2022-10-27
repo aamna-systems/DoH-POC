@@ -1,0 +1,26 @@
+:host {
+  .legend {
+    small {
+      font-size: x-small;
+    }
+  }
+}
+
+.card-title-custom {
+  // font-size: calc(1.275rem + 0.3vw);
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+
+  cursor: pointer;
+}
+
+.selected-tab {
+  background-color: #ebedef;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.btn-custom {
+  color: white;
+}

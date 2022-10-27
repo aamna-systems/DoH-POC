@@ -1,0 +1,105 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card mb-4 search-card animated hinge fadeIn">
+        <div class="card-body">
+          <h2 class="card-title mb-3">Filters</h2>
+          <form
+            [formGroup]="filterDataForm"
+            (ngSubmit)="onApplyFilters()"
+            class="row"
+          >
+            <div class="form-group col-md-4 mb-3">
+              <label for="emirate">Emirate</label>
+              <select formControlName="emirate" class="form-control">
+                <option value="null" hidden>Please select Emirate</option>
+                <option>Abu Dhabi</option>
+                <option>Dubai</option>
+                <option>Sharjah</option>
+                <option>Ajman</option>
+                <option>Umm Al-Quwain</option>
+                <option>Fujairah</option>
+                <option>Ras Al Khaimah</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4 mb-3">
+              <label for="gender">Gender</label>
+              <select formControlName="gender" class="form-control">
+                <option value="null" hidden>Please select gender</option>
+                <option>Female</option>
+                <option>Male</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4 mb-3">
+              <label for="postal-code">Area</label>
+              <input
+                formControlName="area"
+                type="text"
+                class="form-control"
+                id="postal-code"
+                placeholder="Please select area"
+              />
+            </div>
+            <div class="form-group col-md-4 mb-3">
+              <label for="performing-facility">Performing Facility</label>
+              <input
+                formControlName="performingFacility"
+                type="text"
+                class="form-control"
+                id="performing-facility"
+                placeholder="Please enter performing facility"
+              />
+            </div>
+            <div class="form-group col-md-4 mb-3">
+              <label for="referring-facility">Referring Facility</label>
+              <input
+                formControlName="referringFacility"
+                type="text"
+                class="form-control"
+                id="referring-facility"
+                placeholder="Please enter referring facility"
+              />
+            </div>
+            <div class="form-group col-md-4 mb-3">
+              <label for="referring-facility">Test Date</label>
+              <input
+                formControlName="testDate"
+                type="date"
+                class="form-control"
+                id="test-date"
+                placeholder="Please enter test date"
+              />
+            </div>
+            <div class="form-group col-md-8 mb-3">
+              <label for="occupation">Occupation</label>
+              <input
+                formControlName="occupation"
+                type="text"
+                class="form-control"
+                id="occupation"
+                placeholder="Please enter occupation"
+              />
+            </div>
+            <div class="form-group col-md-4 mb-3">
+              <label for="sponsor-name">Sponsor's Name</label>
+              <input
+                formControlName="sponsorName"
+                type="text"
+                class="form-control"
+                id="sponsor-name"
+                placeholder="Please enter sponsor name"
+              />
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group col d-flex align-items-center pt-4">
+                  <button class="btn btn-primary">Filter</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
