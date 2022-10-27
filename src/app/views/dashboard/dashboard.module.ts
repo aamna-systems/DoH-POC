@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
   AvatarModule,
@@ -40,7 +40,8 @@ import { DataShareService } from './services/data-share.service';
     ProgressModule,
     ReactiveFormsModule,
     ButtonModule,
-    FormModule,
+    // FormModule,
+    FormsModule,
     ButtonModule,
     ButtonGroupModule,
     ChartjsModule,

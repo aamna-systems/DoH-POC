@@ -3,97 +3,173 @@
     <div class="col-lg-12">
       <div class="card mb-4 search-card animated hinge fadeIn">
         <div class="card-body">
-          <h2 class="card-title mb-3">Filters</h2>
-          <form
-            [formGroup]="filterDataForm"
-            (ngSubmit)="onApplyFilters()"
-            class="row"
-          >
-            <div class="form-group col-md-4 mb-3">
-              <label for="emirate">Emirate</label>
-              <select formControlName="emirate" class="form-control">
-                <option value="null" hidden>Please select Emirate</option>
-                <option>Abu Dhabi</option>
-                <option>Dubai</option>
-                <option>Sharjah</option>
-                <option>Ajman</option>
-                <option>Umm Al-Quwain</option>
-                <option>Fujairah</option>
-                <option>Ras Al Khaimah</option>
-              </select>
+          <h2 class="card-title mb-3">Generate Data</h2>
+          <form [formGroup]="filterDataForm" (ngSubmit)="onApplyFilters()" class="row">
+            <!-- NO. OF CASES -->
+            <div class="row">
+              <div class="form-group col-md-4 mb-3">
+                <label for="no-of-cases">Number of Cases</label>
+                <input formControlName="noOfCases" type="number" class="form-control" id="no-of-cases"
+                  placeholder="Please enter number of cases to be generated" />
+                <span class="help-block help-block-custom"
+                  *ngIf="filterDataForm.get('noOfCases').touched && filterDataForm.get('noOfCases').invalid">
+                  Field required. Enter a valid number.
+                </span>
+              </div>
             </div>
-            <div class="form-group col-md-4 mb-3">
-              <label for="gender">Gender</label>
-              <select formControlName="gender" class="form-control">
-                <option value="null" hidden>Please select gender</option>
-                <option>Female</option>
-                <option>Male</option>
-              </select>
+            <!-- PATIENT DEMOGRAPHICS -->
+            <div formGroupName="patientDemographics" class="row">
+              <h2 class="mini-title mt-3 mb-3">Patient Demographics</h2>
+              <div class="form-group col-md-4 mb-3">
+                <label for="emirate">Emirate</label>
+                <select formControlName="emirate" class="form-control" id="emirate">
+                  <option value="null" hidden>Please select emirate</option>
+                  <option value="Abu Dhabi">Abu Dhabi</option>
+                  <option value="Dubai">Dubai</option>
+                  <option value="Sharjah">Sharjah</option>
+                  <option value="Ajman">Ajman</option>
+                  <option value="Umm Al-Quwain">Umm Al-Quwain</option>
+                  <option value="Fujairah">Fujairah</option>
+                  <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="type-of-residence">Residence Type</label>
+                <select formControlName="typeOfResidence" class="form-control" id="type-of-residence">
+                  <option value="null" hidden>Please select type of residence</option>
+                  <option value="Villa">Villa</option>
+                  <option value="Flat">Flat</option>
+                  <option value="Hotel">Hotel</option>
+                  <option value="Camp">Camp</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="building-name">Building Name</label>
+                <input formControlName="buildingName" type="text" class="form-control" id="building-name"
+                  placeholder="Please enter building name" />
+              </div>
+
+              <div class="form-group col-md-4 mb-3">
+                <label for="gender">Gender</label>
+                <select formControlName="gender" class="form-control" id="gender">
+                  <option value="null" hidden>Please select gender</option>
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="type-of-residence">Age Group</label>
+                <select formControlName="ageGroup" class="form-control" id="age-group">
+                  <option value="null" hidden>Please select age group</option>
+                  <option value="0-14">0-14</option>
+                  <option value="15-19">15-19</option>
+                  <option value="20-24">20-24</option>
+                  <option value="25-29">25-29</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="dob">Date of Birth</label>
+                <input formControlName="dob" type="date" class="form-control" id="dob"
+                  placeholder="Please enter date of birth" />
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="nationality">Nationality</label>
+                <select formControlName="nationality" class="form-control" id="nationality">
+                  <option value="null" hidden>Please select nationality</option>
+                  <option value="AFGHANISTAN">AFGHANISTAN</option>
+                  <option value="ALAND ISLANDS">ALAND ISLANDS</option>
+                  <option value="ALBANIA">ALBANIA</option>
+                  <option value="ALGERIA">ALGERIA</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="residency-status">Residency Status</label>
+                <select formControlName="residencyStatus" class="form-control" id="residency-status">
+                  <option value="null" hidden>Please select residency status</option>
+                  <option value="UAE CITIZEN">UAE CITIZEN</option>
+                  <option value="RESIDENT EXPATRIATES">RESIDENT EXPATRIATES</option>
+                  <option value="VISITOR">VISITOR</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="vaccination-status">COVID Vaccination Status</label>
+                <select formControlName="covidVaccineStatus" class="form-control" id="vaccination-status">
+                  <option value="null" hidden>Please select COVID vaccination status</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
             </div>
-            <div class="form-group col-md-4 mb-3">
-              <label for="postal-code">Area</label>
-              <input
-                formControlName="area"
-                type="text"
-                class="form-control"
-                id="postal-code"
-                placeholder="Please select area"
-              />
+            <!-- LAB TESTS -->
+            <div formGroupName="labTests" class="row">
+              <h2 class="mini-title mt-3 mb-3">Lab Tests</h2>
+              <div class="form-group col-md-4 mb-3">
+                <label for="test-date">Test Date</label>
+                <input formControlName="testDate" type="date" class="form-control" id="test-date"
+                  placeholder="Please enter test date" />
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="sampleDate">Date of Sample Collection</label>
+                <input formControlName="sampleDate" type="date" class="form-control" id="sampleDate"
+                  placeholder="Please enter sample collection date" />
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="performing-facility">Performing Facility</label>
+                <select formControlName="performingFacility" class="form-control" id="performing-facility">
+                  <option value="null" hidden>Please select performing facility</option>
+                  <option value="AH Yahar Health Center">AH Yahar Health Center</option>
+                  <option value="AH HMSAA Center">AH HMSAA Center</option>
+                  <option value="Lanzhou Institute of Biological Products Co. LTD, China">Lanzhou Institute of
+                    Biological Products Co. LTD, China</option>
+                  <option value="AH Mushrif Children's Speciality Center">AH Mushrif Children's Speciality Center
+                  </option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="referring-facility">Referring Facility</label>
+                <select formControlName="referringFacility" class="form-control" id="referring-facility">
+                  <option value="null" hidden>Please select referring facility</option>
+                  <option value="AH Yahar Health Center">AH Yahar Health Center</option>
+                  <option value="AH HMSAA Center">AH HMSAA Center</option>
+                  <option value="Lanzhou Institute of Biological Products Co. LTD, China">Lanzhou Institute of
+                    Biological Products Co. LTD, China</option>
+                  <option value="AH Mushrif Children's Speciality Center">AH Mushrif Children's Speciality Center
+                  </option>
+                </select>
+              </div>
             </div>
-            <div class="form-group col-md-4 mb-3">
-              <label for="performing-facility">Performing Facility</label>
-              <input
-                formControlName="performingFacility"
-                type="text"
-                class="form-control"
-                id="performing-facility"
-                placeholder="Please enter performing facility"
-              />
-            </div>
-            <div class="form-group col-md-4 mb-3">
-              <label for="referring-facility">Referring Facility</label>
-              <input
-                formControlName="referringFacility"
-                type="text"
-                class="form-control"
-                id="referring-facility"
-                placeholder="Please enter referring facility"
-              />
-            </div>
-            <div class="form-group col-md-4 mb-3">
-              <label for="referring-facility">Test Date</label>
-              <input
-                formControlName="testDate"
-                type="date"
-                class="form-control"
-                id="test-date"
-                placeholder="Please enter test date"
-              />
-            </div>
-            <div class="form-group col-md-8 mb-3">
-              <label for="occupation">Occupation</label>
-              <input
-                formControlName="occupation"
-                type="text"
-                class="form-control"
-                id="occupation"
-                placeholder="Please enter occupation"
-              />
-            </div>
-            <div class="form-group col-md-4 mb-3">
-              <label for="sponsor-name">Sponsor's Name</label>
-              <input
-                formControlName="sponsorName"
-                type="text"
-                class="form-control"
-                id="sponsor-name"
-                placeholder="Please enter sponsor name"
-              />
+            <!-- OCCUPATION DETAILS -->
+            <div formGroupName="occupationDetails" class="row">
+              <h2 class="mini-title mt-3 mb-3">Occupation Details</h2>
+              <div class="form-group col-md-4 mb-3">
+                <label for="occupation">Occupation</label>
+                <select formControlName="occupation" class="form-control" id="occupation">
+                  <option value="null" hidden>Please select occupation</option>
+                  <option value="Driving Instructor">Driving Instructor</option>
+                  <option value="Administrator">Administrator</option>
+                  <option value="Airline">Airline</option>
+                  <option value="Beauty Salons (Men / Women)">Beauty Salons (Men / Women)</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="employer-emirate">Employer Emirate</label>
+                <select formControlName="employerEmirate" class="form-control" id="employer-emirate">
+                  <option value="null" hidden>Please select employer emirate</option>
+                  <option value="Abu Dhabi">Abu Dhabi</option>
+                  <option value="Dubai">Dubai</option>
+                  <option value="Sharjah">Sharjah</option>
+                  <option value="Ajman">Ajman</option>
+                  <option value="Umm Al-Quwain">Umm Al-Quwain</option>
+                  <option value="Fujairah">Fujairah</option>
+                  <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                </select>
+              </div>
             </div>
             <div class="row p-0">
               <div class="col-12 p-0">
                 <div class="form-group col d-flex justify-content-end align-items-center pt-4">
-                  <button class="btn btn-primary py-1 px-4 btn-custom-font">Generate</button>
+                  <button class="btn btn-primary py-1 px-4 btn-custom-font"
+                    [disabled]="!filterDataForm.valid">Generate</button>
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataShareService } from '../../services/data-share.service';
 
 @Component({
@@ -18,20 +18,45 @@ export class DataFiltersComponent implements OnInit {
 
   createForm(): void {
     this.filterDataForm = new FormGroup({
-      emirate: new FormControl(null),
-      gender: new FormControl(null),
-      area: new FormControl(null),
-      performingFacility: new FormControl(null),
-      referringFacility: new FormControl(null),
-      testDate: new FormControl(null),
-      occupation: new FormControl(null),
-      sponsorName: new FormControl(null),
+      noOfCases: new FormControl(null, [
+        Validators.required,
+        Validators.pattern(/^[1-9]+[0-9]*$/),
+      ]),
+      patientDemographics: new FormGroup({
+        emirate: new FormControl(null),
+        typeOfResidence: new FormControl(null),
+        buildingName: new FormControl(null),
+        gender: new FormControl(null),
+        ageGroup: new FormControl(null),
+        dob: new FormControl(null),
+        nationality: new FormControl(null),
+        residencyStatus: new FormControl(null),
+        covidVaccineStatus: new FormControl(null),
+      }),
+      labTests: new FormGroup({
+        testDate: new FormControl(null),
+        sampleDate: new FormControl(null),
+        performingFacility: new FormControl(null),
+        referringFacility: new FormControl(null),
+      }),
+      occupationDetails: new FormGroup({
+        occupation: new FormControl(null),
+        employerEmirate: new FormControl(null),
+      }),
+      // area: new FormControl(null),
+      // performingFacility: new FormControl(null),
+      // referringFacility: new FormControl(null),
+      // testDate: new FormControl(null),
+      // occupation: new FormControl(null),
+      // sponsorName: new FormControl(null),
     });
   }
 
   onApplyFilters(): void {
     const formValue = this.filterDataForm.value;
-    this.dataShareService.setFilterFormValue(formValue);
-    this.filterDataForm.reset();
+    // this.dataShareService.setFilterFormValue(formValue);
+    console.log(this.filterDataForm.value);
+    console.log(this.filterDataForm.valid);
+    // this.filterDataForm.reset();
   }
 }

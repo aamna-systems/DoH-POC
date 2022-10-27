@@ -3,5 +3,17 @@
 }
 
 .btn-custom-font {
-  font-size: 17px;
+  font-size: 18px;
+}
+
+.mini-title {
+  font-size: 20px;
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+.help-block-custom {
+  color: red;
 }
