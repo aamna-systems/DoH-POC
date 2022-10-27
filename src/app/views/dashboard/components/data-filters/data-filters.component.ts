@@ -43,20 +43,24 @@ export class DataFiltersComponent implements OnInit {
         occupation: new FormControl(null),
         employerEmirate: new FormControl(null),
       }),
-      // area: new FormControl(null),
-      // performingFacility: new FormControl(null),
-      // referringFacility: new FormControl(null),
-      // testDate: new FormControl(null),
-      // occupation: new FormControl(null),
-      // sponsorName: new FormControl(null),
     });
   }
 
   onApplyFilters(): void {
     const formValue = this.filterDataForm.value;
-    // this.dataShareService.setFilterFormValue(formValue);
-    console.log(this.filterDataForm.value);
-    console.log(this.filterDataForm.valid);
-    // this.filterDataForm.reset();
+
+    this.dataShareService.sendPatientData(formValue).subscribe(
+      (responseData: any) => {
+        console.log(responseData);
+        alert('Success');
+      },
+      (error: any) => {
+        console.log(error);
+        alert('Error');
+      }
+    );
+
+    console.log(formValue);
+    this.filterDataForm.reset();
   }
 }
