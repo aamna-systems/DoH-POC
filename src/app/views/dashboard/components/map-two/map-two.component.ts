@@ -78,7 +78,7 @@ export class MapTwoComponent implements OnInit {
   }
 
   mapConfiguration(): void {
-    document.getElementById('map').innerHTML = '';
+    document.getElementById('map-two').innerHTML = '';
     let randomGeoPoints = this.dataShareService.generateRandomPoints(
       this.coordinates,
       20000,
