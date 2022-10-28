@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import {
   AvatarModule,
@@ -49,6 +50,7 @@ import { DataShareService } from './services/data-share.service';
     AvatarModule,
     TableModule,
     WidgetsModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   declarations: [
     DashboardComponent,
