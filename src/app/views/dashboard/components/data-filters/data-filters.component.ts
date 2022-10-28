@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { DataShareService } from '../../services/data-share.service';
-
 @Component({
   selector: 'app-data-filters',
   templateUrl: './data-filters.component.html',
@@ -10,7 +10,10 @@ import { DataShareService } from '../../services/data-share.service';
 export class DataFiltersComponent implements OnInit {
   filterDataForm: FormGroup;
 
-  constructor(private dataShareService: DataShareService) {}
+  constructor(
+    private toastr: ToastrService,
+    private dataShareService: DataShareService
+  ) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -50,17 +53,31 @@ export class DataFiltersComponent implements OnInit {
     const formValue = this.filterDataForm.value;
 
     this.dataShareService.sendPatientData(formValue).subscribe(
-      (responseData: any) => {
-        console.log(responseData);
-        alert('Success');
+      (res: any) => {
+        console.log(res);
+        this.showSuccess(res?.message);
       },
       (error: any) => {
         console.log(error);
-        alert('Error');
+        this.showError(error?.message);
       }
     );
 
     console.log(formValue);
     this.filterDataForm.reset();
+  }
+
+  showSuccess(success = 'Data successfully generated') {
+    this.toastr.success(success, 'Success!', {
+      timeOut: 5000,
+      closeButton: true,
+    });
+  }
+
+  showError(error = 'Data could not be generated') {
+    this.toastr.error(error, 'Error!', {
+      timeOut: 5000,
+      closeButton: true,
+    });
   }
 }

@@ -7,6 +7,7 @@ import {
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastNoAnimation, ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 
 import {
   PERFECT_SCROLLBAR_CONFIG,
@@ -89,6 +90,14 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
+    ToastNoAnimationModule,
+    ToastrModule.forRoot({
+      toastComponent: ToastNoAnimation,
+      iconClasses: {},
+      titleClass: "fx-toastr-title",
+      progressBar: false,
+      closeButton: true,
+    }),
   ],
   providers: [
     {
