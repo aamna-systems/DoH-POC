@@ -26,14 +26,53 @@ export class DataFiltersComponent implements OnInit {
         Validators.pattern(/^[1-9]+[0-9]*$/),
       ]),
       patientDemographics: new FormGroup({
-        emirate: new FormControl(null),
-        typeOfResidence: new FormControl(null),
-        buildingName: new FormControl(null),
+        fullname: new FormControl(null),
         gender: new FormControl(null),
         ageGroup: new FormControl(null),
         dob: new FormControl(null),
         nationality: new FormControl(null),
         residencyStatus: new FormControl(null),
+      }),
+      patientAddress: new FormGroup({
+        emirate: new FormControl(null),
+        region: new FormControl(null),
+        zone: new FormControl(null),
+        typeOfResidence: new FormControl(null),
+        buildingName: new FormControl(null),
+        flatNumber: new FormControl(null),
+        area: new FormControl(null),
+        streetNumber: new FormControl(null),
+      }),
+      school: new FormGroup({
+        instituteType: new FormControl(null),
+        schoolName: new FormControl(null),
+        classNumber: new FormControl(null),
+        classSection: new FormControl(null),
+        // Institute Address
+        emirate: new FormControl(null),
+        region: new FormControl(null),
+        zone: new FormControl(null),
+        typeOfResidence: new FormControl(null),
+        buildingName: new FormControl(null),
+        flatNumber: new FormControl(null),
+        area: new FormControl(null),
+        streetNumber: new FormControl(null),
+      }),
+      occuapation: new FormGroup({
+        occupationName: new FormControl(null),
+        employerName: new FormControl(null),
+        placeOfWork: new FormControl(null),
+        // Employer Address
+        emirate: new FormControl(null),
+        region: new FormControl(null),
+        zone: new FormControl(null),
+        typeOfResidence: new FormControl(null),
+        buildingName: new FormControl(null),
+        flatNumber: new FormControl(null),
+        area: new FormControl(null),
+        streetNumber: new FormControl(null),
+      }),
+      vaccination: new FormGroup({
         covidVaccineStatus: new FormControl(null),
       }),
       labTests: new FormGroup({
@@ -41,10 +80,6 @@ export class DataFiltersComponent implements OnInit {
         sampleDate: new FormControl(null),
         performingFacility: new FormControl(null),
         referringFacility: new FormControl(null),
-      }),
-      occupationDetails: new FormGroup({
-        occupation: new FormControl(null),
-        employerEmirate: new FormControl(null),
       }),
     });
   }

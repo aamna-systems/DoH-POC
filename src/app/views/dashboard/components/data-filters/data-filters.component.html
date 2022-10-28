@@ -21,34 +21,10 @@
             <div formGroupName="patientDemographics" class="row">
               <h2 class="mini-title mt-3 mb-3">Patient Demographics</h2>
               <div class="form-group col-md-4 mb-3">
-                <label for="emirate">Emirate</label>
-                <select formControlName="emirate" class="form-select form-control" id="emirate">
-                  <option value="null" hidden>Please select emirate</option>
-                  <option value="Abu Dhabi">Abu Dhabi</option>
-                  <option value="Dubai">Dubai</option>
-                  <option value="Sharjah">Sharjah</option>
-                  <option value="Ajman">Ajman</option>
-                  <option value="Umm Al-Quwain">Umm Al-Quwain</option>
-                  <option value="Fujairah">Fujairah</option>
-                  <option value="Ras Al Khaimah">Ras Al Khaimah</option>
-                </select>
+                <label for="full-name">Full Name</label>
+                <input formControlName="fullname" type="text" class="form-control" id="full-name"
+                  placeholder="Please enter full name" />
               </div>
-              <div class="form-group col-md-4 mb-3">
-                <label for="type-of-residence">Residence Type</label>
-                <select formControlName="typeOfResidence" class="form-select form-control" id="type-of-residence">
-                  <option value="null" hidden>Please select type of residence</option>
-                  <option value="Villa">Villa</option>
-                  <option value="Flat">Flat</option>
-                  <option value="Hotel">Hotel</option>
-                  <option value="Camp">Camp</option>
-                </select>
-              </div>
-              <div class="form-group col-md-4 mb-3">
-                <label for="building-name">Building Name</label>
-                <input formControlName="buildingName" type="text" class="form-control" id="building-name"
-                  placeholder="Please enter building name" />
-              </div>
-
               <div class="form-group col-md-4 mb-3">
                 <label for="gender">Gender</label>
                 <select formControlName="gender" class="form-select form-control" id="gender">
@@ -58,7 +34,7 @@
                 </select>
               </div>
               <div class="form-group col-md-4 mb-3">
-                <label for="type-of-residence">Age Group</label>
+                <label for="age-group">Age Group</label>
                 <select formControlName="ageGroup" class="form-select form-control" id="age-group">
                   <option value="null" hidden>Please select age group</option>
                   <option value="0-14">0-14</option>
@@ -91,6 +67,286 @@
                   <option value="VISITOR">VISITOR</option>
                 </select>
               </div>
+            </div>
+            <!-- PATIENT ADDRESS -->
+            <div formGroupName="patientAddress" class="row">
+              <h2 class="mini-title mt-3 mb-3">Patient Address</h2>
+              <div class="form-group col-md-4 mb-3">
+                <label for="emirate">Emirate</label>
+                <select formControlName="emirate" class="form-select form-control" id="emirate">
+                  <option value="null" hidden>Please select emirate</option>
+                  <option value="Abu Dhabi">Abu Dhabi</option>
+                  <option value="Dubai">Dubai</option>
+                  <option value="Sharjah">Sharjah</option>
+                  <option value="Ajman">Ajman</option>
+                  <option value="Umm Al-Quwain">Umm Al-Quwain</option>
+                  <option value="Fujairah">Fujairah</option>
+                  <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="region">Region</label>
+                <select formControlName="region" class="form-select form-control" id="region">
+                  <option value="null" hidden>Please select region</option>
+                  <option value="ABU DHABI">ABU DHABI</option>
+                  <option value="AL AIN">AL AIN</option>
+                  <option value="AL DHAFRA">AL DHAFRA</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="zone">Zone</label>
+                <select formControlName="zone" class="form-select form-control" id="zone">
+                  <option value="null" hidden>Please select zone</option>
+                  <option value="Zone 1">Zone 1</option>
+                  <option value="Zone 2">Zone 2</option>
+                  <option value="Zone 3">Zone 3</option>
+                  <option value="Zone 4">Zone 4</option>
+                  <option value="Zone 5">Zone 5</option>
+                  <option value="Zone 6">Zone 6</option>
+                  <option value="Zone 7">Zone 7</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="type-of-residence">Residence Type</label>
+                <select formControlName="typeOfResidence" class="form-select form-control" id="type-of-residence">
+                  <option value="null" hidden>Please select type of residence</option>
+                  <option value="Villa">Villa</option>
+                  <option value="Flat">Flat</option>
+                  <option value="Hotel">Hotel</option>
+                  <option value="Camp">Camp</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="building-name">Building Name</label>
+                <input formControlName="buildingName" type="text" class="form-control" id="building-name"
+                  placeholder="Please enter building name" />
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="flat-no">Flat Number</label>
+                <input formControlName="flatNumber" type="text" class="form-control" id="flat-no"
+                  placeholder="Please enter flat number" />
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="area">Area</label>
+                <select formControlName="area" class="form-select form-control" id="area">
+                  <option value="null" hidden>Please select type of area</option>
+                  <option value="Area 1">Area 1</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="street-no">Street Number</label>
+                <input formControlName="streetNumber" type="text" class="form-control" id="street-no"
+                  placeholder="Please enter street number" />
+              </div>
+            </div>
+            <!-- SCHOOL -->
+            <div formGroupName="school" class="row">
+              <h2 class="mini-title mt-3 mb-3">School</h2>
+              <div class="form-group col-md-4 mb-3">
+                <label for="institute-type">Education Institution Type</label>
+                <select formControlName="instituteType" class="form-select form-control" id="institute-type">
+                  <option value="null" hidden>Please select institution type</option>
+                  <option value="Data Not Provided Yet">Data Not Provided Yet</option>
+
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="school-name">School/College/University Name</label>
+                <select formControlName="schoolName" class="form-select form-control" id="school-name">
+                  <option value="null" hidden>Please select school name</option>
+                  <option value="The Westminster School, 21a Street, Al Qusais, Dubai, United Arab Emirates">The
+                    Westminster School, 21a Street, Al Qusais, Dubai, United Arab Emirates</option>
+                  <option value="International Academic School, 12c Street, Al Warqa, Dubai, United Arab Emirates">
+                    International Academic School, 12c Street, Al Warqa, Dubai, United Arab Emirates
+                  </option>
+                  <option
+                    value="Nord Anglia International School, Nord Anglia International School Access Road, Al Barsha South, Dubai, United Arab Emirates">
+                    Nord Anglia International School, Nord Anglia International School Access Road, Al Barsha South,
+                    Dubai
+                  </option>
+                  <option value="Gems Metropole School, DAMAC Hills, Dubai, United Arab Emirates">
+                    Gems Metropole School, DAMAC Hills, Dubai, United Arab Emirates
+                  </option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="class-number">Class Number</label>
+                <select formControlName="classNumber" type="text" class="form-select form-control" id="class-number">
+                  <option value="null" hidden>Please select class number</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="class-section">Class Section</label>
+                <select formControlName="classSection" type="text" class="form-select form-control" id="class-section">
+                  <option value="null" hidden>Please select class section</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="employer-emirate">Emirate</label>
+                <select formControlName="emirate" class="form-select form-control" id="employer-emirate">
+                  <option value="null" hidden>Please select employer emirate</option>
+                  <option value="Abu Dhabi">Abu Dhabi</option>
+                  <option value="Dubai">Dubai</option>
+                  <option value="Sharjah">Sharjah</option>
+                  <option value="Ajman">Ajman</option>
+                  <option value="Umm Al-Quwain">Umm Al-Quwain</option>
+                  <option value="Fujairah">Fujairah</option>
+                  <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="region">Region</label>
+                <select formControlName="region" class="form-select form-control" id="region">
+                  <option value="null" hidden>Please select region</option>
+                  <option value="ABU DHABI">ABU DHABI</option>
+                  <option value="AL AIN">AL AIN</option>
+                  <option value="AL DHAFRA">AL DHAFRA</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="zone">Zone</label>
+                <select formControlName="zone" class="form-select form-control" id="zone">
+                  <option value="null" hidden>Please select zone</option>
+                  <option value="Zone 1">Zone 1</option>
+                  <option value="Zone 2">Zone 2</option>
+                  <option value="Zone 3">Zone 3</option>
+                  <option value="Zone 4">Zone 4</option>
+                  <option value="Zone 5">Zone 5</option>
+                  <option value="Zone 6">Zone 6</option>
+                  <option value="Zone 7">Zone 7</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="type-of-residence">Residence Type</label>
+                <select formControlName="typeOfResidence" class="form-select form-control" id="type-of-residence">
+                  <option value="null" hidden>Please select type of residence</option>
+                  <option value="Villa">Villa</option>
+                  <option value="Flat">Flat</option>
+                  <option value="Hotel">Hotel</option>
+                  <option value="Camp">Camp</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="building-name">Building Name</label>
+                <input formControlName="buildingName" type="text" class="form-control" id="building-name"
+                  placeholder="Please enter building name" />
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="flat-no">Flat Number</label>
+                <input formControlName="flatNumber" type="text" class="form-control" id="flat-no"
+                  placeholder="Please enter flat number" />
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="area">Area</label>
+                <select formControlName="area" class="form-select form-control" id="area">
+                  <option value="null" hidden>Please select type of area</option>
+                  <option value="Area 1">Area 1</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="street-no">Street Number</label>
+                <input formControlName="streetNumber" type="text" class="form-control" id="street-no"
+                  placeholder="Please enter street number" />
+              </div>
+            </div>
+            <!-- OCCUPATION -->
+            <div formGroupName="occuapation" class="row">
+              <h2 class="mini-title mt-3 mb-3">Occupation</h2>
+              <div class="form-group col-md-4 mb-3">
+                <label for="occupation-name">Occupation</label>
+                <select formControlName="occupationName" class="form-select form-control" id="occupation-name">
+                  <option value="null" hidden>Please select occupation name</option>
+                  <option value="Driving Instructor">Driving Instructor</option>
+                  <option value="Administrator">Administrator</option>
+                  <option value="Airline">Airline</option>
+                  <option value="Beauty Salons (Men / Women)">Beauty Salons (Men / Women)</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="employer-name">Employer Name</label>
+                <select formControlName="employerName" class="form-select form-control" id="employer-name">
+                  <option value="null" hidden>Please select employer name</option>
+                  <option value="Data Not Provided Yet">Data Not Provided Yet</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="place-of-work">Place of Work</label>
+                <select formControlName="placeOfWork" class="form-select form-control" id="place-of-work">
+                  <option value="null" hidden>Please select place of work</option>
+                  <option value="Data Not Provided Yet">Data Not Provided Yet</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="employer-emirate">Emirate</label>
+                <select formControlName="emirate" class="form-select form-control" id="employer-emirate">
+                  <option value="null" hidden>Please select employer emirate</option>
+                  <option value="Abu Dhabi">Abu Dhabi</option>
+                  <option value="Dubai">Dubai</option>
+                  <option value="Sharjah">Sharjah</option>
+                  <option value="Ajman">Ajman</option>
+                  <option value="Umm Al-Quwain">Umm Al-Quwain</option>
+                  <option value="Fujairah">Fujairah</option>
+                  <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="region">Region</label>
+                <select formControlName="region" class="form-select form-control" id="region">
+                  <option value="null" hidden>Please select region</option>
+                  <option value="ABU DHABI">ABU DHABI</option>
+                  <option value="AL AIN">AL AIN</option>
+                  <option value="AL DHAFRA">AL DHAFRA</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="zone">Zone</label>
+                <select formControlName="zone" class="form-select form-control" id="zone">
+                  <option value="null" hidden>Please select zone</option>
+                  <option value="Zone 1">Zone 1</option>
+                  <option value="Zone 2">Zone 2</option>
+                  <option value="Zone 3">Zone 3</option>
+                  <option value="Zone 4">Zone 4</option>
+                  <option value="Zone 5">Zone 5</option>
+                  <option value="Zone 6">Zone 6</option>
+                  <option value="Zone 7">Zone 7</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="type-of-residence">Residence Type</label>
+                <select formControlName="typeOfResidence" class="form-select form-control" id="type-of-residence">
+                  <option value="null" hidden>Please select type of residence</option>
+                  <option value="Villa">Villa</option>
+                  <option value="Flat">Flat</option>
+                  <option value="Hotel">Hotel</option>
+                  <option value="Camp">Camp</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="building-name">Building Name</label>
+                <input formControlName="buildingName" type="text" class="form-control" id="building-name"
+                  placeholder="Please enter building name" />
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="flat-no">Flat Number</label>
+                <input formControlName="flatNumber" type="text" class="form-control" id="flat-no"
+                  placeholder="Please enter flat number" />
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="area">Area</label>
+                <select formControlName="area" class="form-select form-control" id="area">
+                  <option value="null" hidden>Please select type of area</option>
+                  <option value="Data Not Provided Yet">Data Not Provided Yet</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="street-no">Street Number</label>
+                <input formControlName="streetNumber" type="text" class="form-control" id="street-no"
+                  placeholder="Please enter street number" />
+              </div>
+            </div>
+            <!-- VACCINATION -->
+            <div formGroupName="vaccination" class="row">
+              <h2 class="mini-title mt-3 mb-3">Vaccination</h2>
               <div class="form-group col-md-4 mb-3">
                 <label for="vaccination-status">COVID Vaccination Status</label>
                 <select formControlName="covidVaccineStatus" class="form-select form-control" id="vaccination-status">
@@ -138,33 +394,7 @@
                 </select>
               </div>
             </div>
-            <!-- OCCUPATION DETAILS -->
-            <div formGroupName="occupationDetails" class="row">
-              <h2 class="mini-title mt-3 mb-3">Occupation</h2>
-              <div class="form-group col-md-4 mb-3">
-                <label for="occupation">Occupation</label>
-                <select formControlName="occupation" class="form-select form-control" id="occupation">
-                  <option value="null" hidden>Please select occupation</option>
-                  <option value="Driving Instructor">Driving Instructor</option>
-                  <option value="Administrator">Administrator</option>
-                  <option value="Airline">Airline</option>
-                  <option value="Beauty Salons (Men / Women)">Beauty Salons (Men / Women)</option>
-                </select>
-              </div>
-              <div class="form-group col-md-4 mb-3">
-                <label for="employer-emirate">Employer Emirate</label>
-                <select formControlName="employerEmirate" class="form-select form-control" id="employer-emirate">
-                  <option value="null" hidden>Please select employer emirate</option>
-                  <option value="Abu Dhabi">Abu Dhabi</option>
-                  <option value="Dubai">Dubai</option>
-                  <option value="Sharjah">Sharjah</option>
-                  <option value="Ajman">Ajman</option>
-                  <option value="Umm Al-Quwain">Umm Al-Quwain</option>
-                  <option value="Fujairah">Fujairah</option>
-                  <option value="Ras Al Khaimah">Ras Al Khaimah</option>
-                </select>
-              </div>
-            </div>
+            <!-- BUTTON -->
             <div class="row p-0">
               <div class="col-12 p-0">
                 <div class="form-group col d-flex justify-content-end align-items-center pt-4">
