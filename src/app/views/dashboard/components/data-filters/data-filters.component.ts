@@ -10,6 +10,28 @@ import { DataShareService } from '../../services/data-share.service';
 export class DataFiltersComponent implements OnInit {
   filterDataForm: FormGroup;
 
+  /* DROPDOWN */
+  dropdownSettings;
+  emirateList: string[];
+  genderList: string[];
+  ageGroupList: string[];
+  nationalityList: string[];
+  residencyStatusList: string[];
+  regionList: string[];
+  zoneList: string[];
+  residenceTypeList: string[];
+  patientAreaList: string[];
+  schoolAreaList: string[];
+  instituteTypeList: string[];
+  schoolNameList: string[];
+  occupationNameList: string[];
+  employerNameList: string[];
+  placeofWorkList: string[];
+  occupationAreaList: string[];
+  covidVaccineStatusList: string[];
+  performingFacilityList: string[];
+  referringFacilityList: string[];
+
   constructor(
     private toastr: ToastrService,
     private dataShareService: DataShareService
@@ -17,6 +39,113 @@ export class DataFiltersComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+
+    /* DROPDOWN */
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'Unselect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true,
+    };
+
+    this.emirateList = [
+      'Abu Dhabi',
+      'Dubai',
+      'Sharjah',
+      'Ajman',
+      'Umm Al-Quwain',
+      'Fujairah',
+      'Ras Al Khaimah',
+    ];
+
+    this.genderList = ['Female', 'Male'];
+
+    this.ageGroupList = ['0-14', '15-19', '20-24', '25-29'];
+
+    this.nationalityList = [
+      'AFGHANISTAN',
+      'ALAND ISLANDS',
+      'ALBANIA',
+      'ALGERIA',
+    ];
+
+    this.residencyStatusList = [
+      'UAE CITIZEN',
+      'RESIDENT EXPATRIATES',
+      'VISITOR',
+    ];
+
+    this.regionList = ['ABU DHABI', 'AL AIN', 'AL DHAFRA'];
+
+    this.zoneList = [
+      'Zone 1',
+      'Zone 2',
+      'Zone 3',
+      'Zone 4',
+      'Zone 5',
+      'Zone 6',
+      'Zone 7',
+    ];
+
+    this.residenceTypeList = ['Villa', 'Flat', 'Hotel', 'Camp'];
+
+    this.schoolAreaList = [];
+
+    this.instituteTypeList = [];
+
+    this.schoolNameList = [
+      'The Westminster School, 21a Street, Al Qusais, Dubai, United Arab Emirates',
+      'International Academic School, 12c Street, Al Warqa, Dubai, United Arab Emirates',
+      'Nord Anglia International School, Nord Anglia International School Access Road, Al Barsha South, Dubai, United Arab Emirates	',
+      'Gems Metropole School, DAMAC Hills, Dubai, United Arab Emirates',
+    ];
+
+    this.occupationNameList = [
+      'Driving Instructor',
+      'Administrator',
+      'Airline',
+      'Beauty Salons (Men / Women)',
+    ];
+
+    this.employerNameList = [
+      'Etisalat',
+      'Microsoft',
+      'TechVista ltd',
+      'TechManindra ltd',
+    ];
+
+    this.placeofWorkList = [
+      'Al Kifaf building',
+      'Microsoft Dubai office Building',
+      'The Exchange Tower Building',
+      'Latifa Tower Building',
+    ];
+
+    this.occupationAreaList = [
+      'Zabeel',
+      'Dubai Knowledge Park',
+      'Business Bay',
+      'World Trade Centre',
+    ];
+
+    this.covidVaccineStatusList = ['Yes', 'No'];
+
+    this.performingFacilityList = [
+      'AH Yahar Health Center',
+      'AH HMSAA Center',
+      'Lanzhou Institute of Biological Products Co. LTD, China',
+      "AH Mushrif Children's Speciality Center",
+    ];
+
+    this.referringFacilityList = [
+      'AH Yahar Health Center',
+      'AH HMSAA Center',
+      'Lanzhou Institute of Biological Products Co. LTD, China',
+      "AH Mushrif Children's Speciality Center",
+    ];
   }
 
   createForm(): void {

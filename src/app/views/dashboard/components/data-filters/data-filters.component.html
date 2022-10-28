@@ -27,21 +27,27 @@
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="gender">Gender</label>
-                <select formControlName="gender" class="form-select form-control" id="gender">
+                <ng-multiselect-dropdown formControlName="gender" [placeholder]="'Please select gender'"
+                  [settings]="dropdownSettings" [data]="genderList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="gender" class="form-select form-control" id="gender">
                   <option value="null" hidden>Please select gender</option>
                   <option value="Female">Female</option>
                   <option value="Male">Male</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="age-group">Age Group</label>
-                <select formControlName="ageGroup" class="form-select form-control" id="age-group">
+                <ng-multiselect-dropdown formControlName="ageGroup" [placeholder]="'Please select age group'"
+                  [settings]="dropdownSettings" [data]="ageGroupList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="ageGroup" class="form-select form-control" id="age-group">
                   <option value="null" hidden>Please select age group</option>
                   <option value="0-14">0-14</option>
                   <option value="15-19">15-19</option>
                   <option value="20-24">20-24</option>
-                  <option value="25-29">25-29</option>
-                </select>
+                  <option value="25-29">25-29</option> 
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="dob">Date of Birth</label>
@@ -50,22 +56,29 @@
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="nationality">Nationality</label>
-                <select formControlName="nationality" class="form-select form-control" id="nationality">
+                <ng-multiselect-dropdown formControlName="nationality" [placeholder]="'Please select nationality'"
+                  [settings]="dropdownSettings" [data]="nationalityList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="nationality" class="form-select form-control" id="nationality">
                   <option value="null" hidden>Please select nationality</option>
                   <option value="AFGHANISTAN">AFGHANISTAN</option>
                   <option value="ALAND ISLANDS">ALAND ISLANDS</option>
                   <option value="ALBANIA">ALBANIA</option>
                   <option value="ALGERIA">ALGERIA</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="residency-status">Residency Status</label>
-                <select formControlName="residencyStatus" class="form-select form-control" id="residency-status">
+                <ng-multiselect-dropdown formControlName="residencyStatus"
+                  [placeholder]="'Please select residency status'" [settings]="dropdownSettings"
+                  [data]="residencyStatusList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="residencyStatus" class="form-select form-control" id="residency-status">
                   <option value="null" hidden>Please select residency status</option>
                   <option value="UAE CITIZEN">UAE CITIZEN</option>
                   <option value="RESIDENT EXPATRIATES">RESIDENT EXPATRIATES</option>
                   <option value="VISITOR">VISITOR</option>
-                </select>
+                </select> -->
               </div>
             </div>
             <!-- PATIENT ADDRESS -->
@@ -73,29 +86,38 @@
               <h2 class="mini-title mt-3 mb-3">Patient Address</h2>
               <div class="form-group col-md-4 mb-3">
                 <label for="emirate">Emirate</label>
-                <select formControlName="emirate" class="form-select form-control" id="emirate">
-                  <option value="null" hidden>Please select emirate</option>
+                <ng-multiselect-dropdown formControlName="emirate" [placeholder]="'Please select emirate'"
+                  [settings]="dropdownSettings" [data]="emirateList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="emirate" class="form-select form-control" id="emirate"> -->
+                <!-- <option value="null" hidden>Please select emirate</option>
                   <option value="Abu Dhabi">Abu Dhabi</option>
                   <option value="Dubai">Dubai</option>
                   <option value="Sharjah">Sharjah</option>
                   <option value="Ajman">Ajman</option>
                   <option value="Umm Al-Quwain">Umm Al-Quwain</option>
                   <option value="Fujairah">Fujairah</option>
-                  <option value="Ras Al Khaimah">Ras Al Khaimah</option>
-                </select>
+                  <option value="Ras Al Khaimah">Ras Al Khaimah</option> -->
+                <!-- </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="region">Region</label>
-                <select formControlName="region" class="form-select form-control" id="region">
+                <ng-multiselect-dropdown formControlName="region" [placeholder]="'Please select region'"
+                  [settings]="dropdownSettings" [data]="regionList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="region" class="form-select form-control" id="region">
                   <option value="null" hidden>Please select region</option>
                   <option value="ABU DHABI">ABU DHABI</option>
                   <option value="AL AIN">AL AIN</option>
                   <option value="AL DHAFRA">AL DHAFRA</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="zone">Zone</label>
-                <select formControlName="zone" class="form-select form-control" id="zone">
+                <ng-multiselect-dropdown formControlName="zone" [placeholder]="'Please select zone'"
+                  [settings]="dropdownSettings" [data]="zoneList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="zone" class="form-select form-control" id="zone">
                   <option value="null" hidden>Please select zone</option>
                   <option value="Zone 1">Zone 1</option>
                   <option value="Zone 2">Zone 2</option>
@@ -104,17 +126,21 @@
                   <option value="Zone 5">Zone 5</option>
                   <option value="Zone 6">Zone 6</option>
                   <option value="Zone 7">Zone 7</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="type-of-residence">Residence Type</label>
-                <select formControlName="typeOfResidence" class="form-select form-control" id="type-of-residence">
+                <ng-multiselect-dropdown formControlName="typeOfResidence"
+                  [placeholder]="'Please select type of residence'" [settings]="dropdownSettings"
+                  [data]="residenceTypeList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="typeOfResidence" class="form-select form-control" id="type-of-residence">
                   <option value="null" hidden>Please select type of residence</option>
                   <option value="Villa">Villa</option>
                   <option value="Flat">Flat</option>
                   <option value="Hotel">Hotel</option>
                   <option value="Camp">Camp</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="building-name">Building Name</label>
@@ -123,19 +149,22 @@
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="flat-no">Flat Number</label>
-                <input formControlName="flatNumber" type="text" class="form-control" id="flat-no"
+                <input formControlName="flatNumber" type="number" class="form-control" id="flat-no"
                   placeholder="Please enter flat number" />
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="area">Area</label>
-                <select formControlName="area" class="form-select form-control" id="area">
+                <ng-multiselect-dropdown formControlName="area" [placeholder]="'Please select area'"
+                  [settings]="dropdownSettings" [data]="patientAreaList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="area" class="form-select form-control" id="area">
                   <option value="null" hidden>Please select type of area</option>
                   <option value="Area 1">Area 1</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="street-no">Street Number</label>
-                <input formControlName="streetNumber" type="text" class="form-control" id="street-no"
+                <input formControlName="streetNumber" type="number" class="form-control" id="street-no"
                   placeholder="Please enter street number" />
               </div>
             </div>
@@ -144,17 +173,23 @@
               <h2 class="mini-title mt-3 mb-3">School</h2>
               <div class="form-group col-md-4 mb-3">
                 <label for="institute-type">Education Institution Type</label>
-                <select formControlName="instituteType" class="form-select form-control" id="institute-type">
+                <ng-multiselect-dropdown formControlName="instituteType"
+                  [placeholder]="'Please select institution type'" [settings]="dropdownSettings"
+                  [data]="instituteTypeList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="instituteType" class="form-select form-control" id="institute-type">
                   <option value="null" hidden>Please select institution type</option>
                   <option value="Data Not Provided Yet">Data Not Provided Yet</option>
-
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="school-name">School/College/University Name</label>
-                <select formControlName="schoolName" class="form-select form-control" id="school-name">
+                <ng-multiselect-dropdown formControlName="schoolName" [placeholder]="'Please select school name'"
+                  [settings]="dropdownSettings" [data]="schoolNameList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="schoolName" class="form-select form-control" id="school-name">
                   <option value="null" hidden>Please select school name</option>
-                  <option value="The Westminster School, 21a Street, Al Qusais, Dubai, United Arab Emirates">The
+                  <option value="">The
                     Westminster School, 21a Street, Al Qusais, Dubai, United Arab Emirates</option>
                   <option value="International Academic School, 12c Street, Al Warqa, Dubai, United Arab Emirates">
                     International Academic School, 12c Street, Al Warqa, Dubai, United Arab Emirates
@@ -167,23 +202,24 @@
                   <option value="Gems Metropole School, DAMAC Hills, Dubai, United Arab Emirates">
                     Gems Metropole School, DAMAC Hills, Dubai, United Arab Emirates
                   </option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="class-number">Class Number</label>
-                <select formControlName="classNumber" type="text" class="form-select form-control" id="class-number">
-                  <option value="null" hidden>Please select class number</option>
-                </select>
+                <input formControlName="classNumber" type="number" class="form-control" id="class-number"
+                  placeholder="Please enter class number" />
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="class-section">Class Section</label>
-                <select formControlName="classSection" type="text" class="form-select form-control" id="class-section">
-                  <option value="null" hidden>Please select class section</option>
-                </select>
+                <input formControlName="classSection" type="text" class="form-control" id="class-section"
+                  placeholder="Please enter class section" />
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="employer-emirate">Emirate</label>
-                <select formControlName="emirate" class="form-select form-control" id="employer-emirate">
+                <ng-multiselect-dropdown formControlName="emirate" [placeholder]="'Please select emirate'"
+                  [settings]="dropdownSettings" [data]="emirateList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="emirate" class="form-select form-control" id="employer-emirate">
                   <option value="null" hidden>Please select employer emirate</option>
                   <option value="Abu Dhabi">Abu Dhabi</option>
                   <option value="Dubai">Dubai</option>
@@ -192,20 +228,26 @@
                   <option value="Umm Al-Quwain">Umm Al-Quwain</option>
                   <option value="Fujairah">Fujairah</option>
                   <option value="Ras Al Khaimah">Ras Al Khaimah</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="region">Region</label>
-                <select formControlName="region" class="form-select form-control" id="region">
+                <ng-multiselect-dropdown formControlName="region" [placeholder]="'Please select region'"
+                  [settings]="dropdownSettings" [data]="regionList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="region" class="form-select form-control" id="region">
                   <option value="null" hidden>Please select region</option>
                   <option value="ABU DHABI">ABU DHABI</option>
                   <option value="AL AIN">AL AIN</option>
                   <option value="AL DHAFRA">AL DHAFRA</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="zone">Zone</label>
-                <select formControlName="zone" class="form-select form-control" id="zone">
+                <ng-multiselect-dropdown formControlName="zone" [placeholder]="'Please select zone'"
+                  [settings]="dropdownSettings" [data]="zoneList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="zone" class="form-select form-control" id="zone">
                   <option value="null" hidden>Please select zone</option>
                   <option value="Zone 1">Zone 1</option>
                   <option value="Zone 2">Zone 2</option>
@@ -214,17 +256,21 @@
                   <option value="Zone 5">Zone 5</option>
                   <option value="Zone 6">Zone 6</option>
                   <option value="Zone 7">Zone 7</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="type-of-residence">Residence Type</label>
-                <select formControlName="typeOfResidence" class="form-select form-control" id="type-of-residence">
+                <ng-multiselect-dropdown formControlName="typeOfResidence"
+                  [placeholder]="'Please select type of residence'" [settings]="dropdownSettings"
+                  [data]="residenceTypeList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="typeOfResidence" class="form-select form-control" id="type-of-residence">
                   <option value="null" hidden>Please select type of residence</option>
                   <option value="Villa">Villa</option>
                   <option value="Flat">Flat</option>
                   <option value="Hotel">Hotel</option>
                   <option value="Camp">Camp</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="building-name">Building Name</label>
@@ -233,19 +279,22 @@
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="flat-no">Flat Number</label>
-                <input formControlName="flatNumber" type="text" class="form-control" id="flat-no"
+                <input formControlName="flatNumber" type="number" class="form-control" id="flat-no"
                   placeholder="Please enter flat number" />
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="area">Area</label>
-                <select formControlName="area" class="form-select form-control" id="area">
+                <ng-multiselect-dropdown formControlName="area" [placeholder]="'Please select area'"
+                  [settings]="dropdownSettings" [data]="schoolAreaList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="area" class="form-select form-control" id="area">
                   <option value="null" hidden>Please select type of area</option>
                   <option value="Area 1">Area 1</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="street-no">Street Number</label>
-                <input formControlName="streetNumber" type="text" class="form-control" id="street-no"
+                <input formControlName="streetNumber" type="number" class="form-control" id="street-no"
                   placeholder="Please enter street number" />
               </div>
             </div>
@@ -254,31 +303,44 @@
               <h2 class="mini-title mt-3 mb-3">Occupation</h2>
               <div class="form-group col-md-4 mb-3">
                 <label for="occupation-name">Occupation</label>
-                <select formControlName="occupationName" class="form-select form-control" id="occupation-name">
+                <ng-multiselect-dropdown formControlName="occupationName"
+                  [placeholder]="'Please select occupation name'" [settings]="dropdownSettings"
+                  [data]="occupationNameList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="occupationName" class="form-select form-control" id="occupation-name">
                   <option value="null" hidden>Please select occupation name</option>
                   <option value="Driving Instructor">Driving Instructor</option>
                   <option value="Administrator">Administrator</option>
-                  <option value="Airline">Airline</option>
+                  <option value=>Airline</option>
                   <option value="Beauty Salons (Men / Women)">Beauty Salons (Men / Women)</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="employer-name">Employer Name</label>
-                <select formControlName="employerName" class="form-select form-control" id="employer-name">
+                <ng-multiselect-dropdown formControlName="employerName" [placeholder]="'Please select employer name'"
+                  [settings]="dropdownSettings" [data]="employerNameList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="employerName" class="form-select form-control" id="employer-name">
                   <option value="null" hidden>Please select employer name</option>
                   <option value="Data Not Provided Yet">Data Not Provided Yet</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="place-of-work">Place of Work</label>
-                <select formControlName="placeOfWork" class="form-select form-control" id="place-of-work">
+                <ng-multiselect-dropdown formControlName="placeOfWork" [placeholder]="'Please select place of work'"
+                  [settings]="dropdownSettings" [data]="placeofWorkList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="placeOfWork" class="form-select form-control" id="place-of-work">
                   <option value="null" hidden>Please select place of work</option>
                   <option value="Data Not Provided Yet">Data Not Provided Yet</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="employer-emirate">Emirate</label>
-                <select formControlName="emirate" class="form-select form-control" id="employer-emirate">
+                <ng-multiselect-dropdown formControlName="emirate" [placeholder]="'Please select emirate'"
+                  [settings]="dropdownSettings" [data]="emirateList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="emirate" class="form-select form-control" id="employer-emirate">
                   <option value="null" hidden>Please select employer emirate</option>
                   <option value="Abu Dhabi">Abu Dhabi</option>
                   <option value="Dubai">Dubai</option>
@@ -287,20 +349,26 @@
                   <option value="Umm Al-Quwain">Umm Al-Quwain</option>
                   <option value="Fujairah">Fujairah</option>
                   <option value="Ras Al Khaimah">Ras Al Khaimah</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="region">Region</label>
-                <select formControlName="region" class="form-select form-control" id="region">
+                <ng-multiselect-dropdown formControlName="region" [placeholder]="'Please select region'"
+                  [settings]="dropdownSettings" [data]="regionList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="region" class="form-select form-control" id="region">
                   <option value="null" hidden>Please select region</option>
                   <option value="ABU DHABI">ABU DHABI</option>
                   <option value="AL AIN">AL AIN</option>
                   <option value="AL DHAFRA">AL DHAFRA</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="zone">Zone</label>
-                <select formControlName="zone" class="form-select form-control" id="zone">
+                <ng-multiselect-dropdown formControlName="zone" [placeholder]="'Please select zone'"
+                  [settings]="dropdownSettings" [data]="zoneList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="zone" class="form-select form-control" id="zone">
                   <option value="null" hidden>Please select zone</option>
                   <option value="Zone 1">Zone 1</option>
                   <option value="Zone 2">Zone 2</option>
@@ -309,17 +377,21 @@
                   <option value="Zone 5">Zone 5</option>
                   <option value="Zone 6">Zone 6</option>
                   <option value="Zone 7">Zone 7</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="type-of-residence">Residence Type</label>
-                <select formControlName="typeOfResidence" class="form-select form-control" id="type-of-residence">
+                <ng-multiselect-dropdown formControlName="typeOfResidence"
+                  [placeholder]="'Please select type of residence'" [settings]="dropdownSettings"
+                  [data]="residenceTypeList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="typeOfResidence" class="form-select form-control" id="type-of-residence">
                   <option value="null" hidden>Please select type of residence</option>
                   <option value="Villa">Villa</option>
                   <option value="Flat">Flat</option>
                   <option value="Hotel">Hotel</option>
                   <option value="Camp">Camp</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="building-name">Building Name</label>
@@ -333,10 +405,13 @@
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="area">Area</label>
-                <select formControlName="area" class="form-select form-control" id="area">
+                <ng-multiselect-dropdown formControlName="area" [placeholder]="'Please select area'"
+                  [settings]="dropdownSettings" [data]="occupationAreaList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="area" class="form-select form-control" id="area">
                   <option value="null" hidden>Please select type of area</option>
                   <option value="Data Not Provided Yet">Data Not Provided Yet</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="street-no">Street Number</label>
@@ -349,11 +424,15 @@
               <h2 class="mini-title mt-3 mb-3">Vaccination</h2>
               <div class="form-group col-md-4 mb-3">
                 <label for="vaccination-status">COVID Vaccination Status</label>
-                <select formControlName="covidVaccineStatus" class="form-select form-control" id="vaccination-status">
+                <ng-multiselect-dropdown formControlName="covidVaccineStatus"
+                  [placeholder]="'Please select COVID vaccination status'" [settings]="dropdownSettings"
+                  [data]="covidVaccineStatusList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="covidVaccineStatus" class="form-select form-control" id="vaccination-status">
                   <option value="null" hidden>Please select COVID vaccination status</option>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
-                </select>
+                </select> -->
               </div>
             </div>
             <!-- LAB TESTS -->
@@ -371,7 +450,11 @@
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="performing-facility">Performing Facility</label>
-                <select formControlName="performingFacility" class="form-select form-control" id="performing-facility">
+                <ng-multiselect-dropdown formControlName="performingFacility"
+                  [placeholder]="'Please select performing facility'" [settings]="dropdownSettings"
+                  [data]="performingFacilityList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="performingFacility" class="form-select form-control" id="performing-facility">
                   <option value="null" hidden>Please select performing facility</option>
                   <option value="AH Yahar Health Center">AH Yahar Health Center</option>
                   <option value="AH HMSAA Center">AH HMSAA Center</option>
@@ -379,11 +462,15 @@
                     Biological Products Co. LTD, China</option>
                   <option value="AH Mushrif Children's Speciality Center">AH Mushrif Children's Speciality Center
                   </option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="referring-facility">Referring Facility</label>
-                <select formControlName="referringFacility" class="form-select form-control" id="referring-facility">
+                <ng-multiselect-dropdown formControlName="referringFacility"
+                  [placeholder]="'Please select referring facility'" [settings]="dropdownSettings"
+                  [data]="referringFacilityList" value="item_id">
+                </ng-multiselect-dropdown>
+                <!-- <select formControlName="referringFacility" class="form-select form-control" id="referring-facility">
                   <option value="null" hidden>Please select referring facility</option>
                   <option value="AH Yahar Health Center">AH Yahar Health Center</option>
                   <option value="AH HMSAA Center">AH HMSAA Center</option>
@@ -391,7 +478,7 @@
                     Biological Products Co. LTD, China</option>
                   <option value="AH Mushrif Children's Speciality Center">AH Mushrif Children's Speciality Center
                   </option>
-                </select>
+                </select> -->
               </div>
             </div>
             <!-- BUTTON -->
