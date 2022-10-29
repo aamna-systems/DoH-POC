@@ -94,7 +94,7 @@ export class DataFiltersComponent implements OnInit {
 
     this.schoolAreaList = ['Al Qusais', 'Al Warqa', 'Al Barsha South', 'DAMAC Hills'];
 
-    this.instituteTypeList = [];
+    this.instituteTypeList = ['School', 'College', 'University'];
 
     this.schoolNameList = [
       'The Westminster School',
