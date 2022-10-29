@@ -97,10 +97,10 @@ export class DataFiltersComponent implements OnInit {
     this.instituteTypeList = [];
 
     this.schoolNameList = [
-      'The Westminster School, 21a Street, Al Qusais, Dubai, United Arab Emirates',
-      'International Academic School, 12c Street, Al Warqa, Dubai, United Arab Emirates',
-      'Nord Anglia International School, Nord Anglia International School Access Road, Al Barsha South, Dubai, United Arab Emirates	',
-      'Gems Metropole School, DAMAC Hills, Dubai, United Arab Emirates',
+      'The Westminster School',
+      'International Academic School',
+      'Nord Anglia International School',
+      'Gems Metropole School',
     ];
 
     this.occupationNameList = [
