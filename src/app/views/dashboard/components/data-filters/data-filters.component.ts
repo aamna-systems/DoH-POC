@@ -92,7 +92,12 @@ export class DataFiltersComponent implements OnInit {
 
     this.residenceTypeList = ['Villa', 'Flat', 'Hotel', 'Camp'];
 
-    this.schoolAreaList = ['Al Qusais', 'Al Warqa', 'Al Barsha South', 'DAMAC Hills'];
+    this.schoolAreaList = [
+      'Al Qusais',
+      'Al Warqa',
+      'Al Barsha South',
+      'DAMAC Hills',
+    ];
 
     this.instituteTypeList = ['School', 'College', 'University'];
 
@@ -181,7 +186,7 @@ export class DataFiltersComponent implements OnInit {
         emirate: new FormControl(null),
         region: new FormControl(null),
         zone: new FormControl(null),
-        typeOfResidence: new FormControl(null),
+        // typeOfResidence: new FormControl(null),
         buildingName: new FormControl(null),
         flatNumber: new FormControl(null),
         area: new FormControl(null),
@@ -195,7 +200,7 @@ export class DataFiltersComponent implements OnInit {
         emirate: new FormControl(null),
         region: new FormControl(null),
         zone: new FormControl(null),
-        typeOfResidence: new FormControl(null),
+        // typeOfResidence: new FormControl(null),
         buildingName: new FormControl(null),
         flatNumber: new FormControl(null),
         area: new FormControl(null),
