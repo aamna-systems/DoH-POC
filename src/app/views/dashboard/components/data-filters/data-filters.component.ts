@@ -20,6 +20,7 @@ export class DataFiltersComponent implements OnInit {
   regionList: string[];
   zoneList: string[];
   residenceTypeList: string[];
+  patientBuildingNameList: string[];
   patientAreaList: string[];
   schoolAreaList: string[];
   instituteTypeList: string[];
@@ -91,6 +92,20 @@ export class DataFiltersComponent implements OnInit {
     ];
 
     this.residenceTypeList = ['Villa', 'Flat', 'Hotel', 'Camp'];
+
+    this.patientBuildingNameList = [
+      'Hotel Tulip',
+      'Al Khoory Hotel Apartments',
+      'Saffron Hotel',
+      'Garden Homes Frond O',
+    ];
+
+    this.patientAreaList = [
+      'Al Mankhool',
+      'Al Barsha',
+      'Deira',
+      'Palm Jumeirah',
+    ];
 
     this.schoolAreaList = [
       'Al Qusais',
@@ -233,7 +248,7 @@ export class DataFiltersComponent implements OnInit {
     );
 
     console.log(formValue);
-    this.filterDataForm.reset();
+    // this.filterDataForm.reset();
   }
 
   showSuccess(success = 'Data successfully generated') {

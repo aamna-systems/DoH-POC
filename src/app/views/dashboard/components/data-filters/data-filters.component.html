@@ -86,8 +86,9 @@
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="building-name">Building Name</label>
-                <input formControlName="buildingName" type="text" class="form-control" id="building-name"
-                  placeholder="Please enter building name" />
+                <ng-multiselect-dropdown formControlName="buildingName" [placeholder]="'Please select building name'"
+                  [settings]="dropdownSettings" [data]="patientBuildingNameList" value="item_id">
+                </ng-multiselect-dropdown>
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="flat-no">Flat Number</label>
