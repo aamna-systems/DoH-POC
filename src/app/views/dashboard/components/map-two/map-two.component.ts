@@ -12,6 +12,7 @@ import * as layer from 'ol/layer';
 import { FilterFormData } from '../../models/filter.model';
 import { DataShareService } from '../../services/data-share.service';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-map-two',
@@ -47,21 +48,57 @@ export class MapTwoComponent implements OnInit {
 
   raster;
 
-  constructor(private dataShareService: DataShareService) {}
+  private resCoordinates;
+  center: { lat: number; lng: number } = { lat: 25.2048, lng: 55.2708 }; // Dubai
+
+  constructor(
+    private toastr: ToastrService,
+    private dataShareService: DataShareService
+  ) {}
 
   ngOnInit(): void {
-    // this.distanceInput = "40"
-    // this.minDistanceInput = "20"
+    this.dataShareService.getPatientData().subscribe(
+      (res: any) => {
+        this.resCoordinates = res;
+        this.center = {
+          lat: res[0]?.patientAddress?.latitude ?? 25.2048,
+          lng: res[0]?.patientAddress?.longitude ?? 55.2708,
+        };
 
-    this.formValueSub = this.dataShareService.formValueChanged.subscribe(
-      (formValue: FilterFormData) => {
-        this.formValue = formValue;
-        this.emirate = this?.formValue?.emirate ?? 'dubai';
-        this.coordinates = this.dataShareService.getCoordinates(this.emirate);
-        this.logEmirateData();
         this.mapConfiguration();
+
+        console.log(res);
+        console.log('CENTER', this.center);
+        // if (this.resCoordinates?.length) {
+        //   this.mapConfiguration();
+        //   console.log('map');
+        // } else {
+        //   this.emptyMapConfiguration();
+        //   console.log('emptyMap');
+        // }
+
+        this.showSuccess(res?.message);
+      },
+      (error: any) => {
+        this.resCoordinates = [];
+        this.center = { lat: 25.2048, lng: 55.2708 }; // Dubai
+
+        this.mapConfiguration();
+
+        console.log(error);
+        this.showError(error?.message);
       }
     );
+
+    // this.formValueSub = this.dataShareService.formValueChanged.subscribe(
+    //   (formValue: FilterFormData) => {
+    //     this.formValue = formValue;
+    //     this.emirate = this?.formValue?.emirate ?? 'dubai';
+    //     this.coordinates = this.dataShareService.getCoordinates(this.emirate);
+    //     this.logEmirateData();
+    //     this.mapConfiguration();
+    //   }
+    // );
 
     // this.coordinatesSub = this.dataShareService.coordinatesReset.subscribe(() => this.resetCoordinates());
 
@@ -79,11 +116,14 @@ export class MapTwoComponent implements OnInit {
 
   mapConfiguration(): void {
     document.getElementById('map-two').innerHTML = '';
-    let randomGeoPoints = this.dataShareService.generateRandomPoints(
-      this.coordinates,
-      20000,
-      10000
-    );
+    // let randomGeoPoints = this.dataShareService.generateRandomPoints(
+    //   this.coordinates,
+    //   20000,
+    //   10000
+    // );
+
+    let randomGeoPoints = this.resCoordinates;
+
     // console.log("COORD - ", this.coordinates)
     // this.count = 20000;
     // this.features = new Array(this.count);
@@ -96,19 +136,30 @@ export class MapTwoComponent implements OnInit {
     //   this.features[i] = new Feature(new Point(coordinates));
     // }
 
-    this.count = randomGeoPoints.length;
-    let co = [];
-    for (let i = 0; i < this.count; i++) {
-      co.push({ lng: randomGeoPoints[i].lng, lat: randomGeoPoints[i].lat });
-    }
-    console.log('coord - ', co);
+    this.count = randomGeoPoints?.length;
 
-    this.features = new Array(this.count);
-    for (var i = 0; i < this.count; ++i) {
-      var coordinates = [parseFloat(co[i].lng), parseFloat(co[i].lat)];
-      this.features[i] = new Feature(
-        new Point(proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857'))
-      );
+    if (this.count) {
+      for (let i = 0; i < this.count; i++) {
+        console.log('LONG', randomGeoPoints[i]['patientAddress'].longitude);
+        console.log('LAT', randomGeoPoints[i]['patientAddress'].latitude);
+      }
+
+      let co = [];
+      for (let i = 0; i < this.count; i++) {
+        co.push({
+          lng: randomGeoPoints[i]['patientAddress'].longitude,
+          lat: randomGeoPoints[i]['patientAddress'].latitude,
+        });
+      }
+      console.log('coord - ', co);
+
+      this.features = new Array(this.count);
+      for (var i = 0; i < this.count; ++i) {
+        var coordinates = [parseFloat(co[i].lng), parseFloat(co[i].lat)];
+        this.features[i] = new Feature(
+          new Point(proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857'))
+        );
+      }
     }
 
     var source = new VectorSource({
@@ -164,13 +215,30 @@ export class MapTwoComponent implements OnInit {
       view: new View({
         // center: proj.fromLonLat([144.847275, 13.566806]),
         // center: proj.fromLonLat([55.2708, 25.2048]),
-        center: proj.fromLonLat([this.coordinates.lng, this.coordinates.lat]),
+        center: proj.fromLonLat([this.center.lng, this.center.lat]),
         zoom: 11,
         projection: 'EPSG:3857',
       }),
       // controls: [],
     });
   }
+
+  // emptyMapConfiguration(): void {
+  //   document.getElementById('map-two').innerHTML = '';
+
+  //   const map = new Map({
+  //     layers: [
+  //       new TileLayer({
+  //         source: new OSM(),
+  //       }),
+  //     ],
+  //     target: 'map-two',
+  //     view: new View({
+  //       center: proj.fromLonLat([this.center.lng, this.center.lat]),
+  //       zoom: 11,
+  //     }),
+  //   });
+  // }
 
   resetCoordinates(): void {
     this.emirate = 'dubai';
@@ -184,6 +252,20 @@ export class MapTwoComponent implements OnInit {
     console.log('Emirate:', this.emirate);
     console.log('Coordinates:', this.coordinates);
     console.log('----');
+  }
+
+  showSuccess(success = 'Data successfully fetched') {
+    this.toastr.success(success, 'Success!', {
+      timeOut: 5000,
+      closeButton: true,
+    });
+  }
+
+  showError(error = 'Data could not be fetched') {
+    this.toastr.error(error, 'Error!', {
+      timeOut: 5000,
+      closeButton: true,
+    });
   }
 
   ngOnDestroy(): void {

@@ -12,6 +12,7 @@ import * as layer from 'ol/layer';
 import { FilterFormData } from '../../models/filter.model';
 import { DataShareService } from '../../services/data-share.service';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-map-three',
@@ -47,87 +48,64 @@ export class MapThreeComponent implements OnInit, OnDestroy {
 
   raster;
 
-  constructor(private dataShareService: DataShareService) {}
+  private resCoordinates;
+  center: { lat: number; lng: number } = { lat: 25.2048, lng: 55.2708 }; // Dubai
+
+  constructor(
+    private toastr: ToastrService,
+    private dataShareService: DataShareService
+  ) {}
 
   ngOnInit(): void {
-    this.formValueSub = this.dataShareService.formValueChanged.subscribe(
-      (formValue: FilterFormData) => {
-        this.formValue = formValue;
-        this.emirate = this?.formValue?.emirate ?? 'dubai';
-        this.coordinates = this.dataShareService.getCoordinates(this.emirate);
-        this.logEmirateData();
+    this.dataShareService.getPatientData().subscribe(
+      (res: any) => {
+        this.resCoordinates = res;
+        this.center = {
+          lat: res[0]?.patientAddress?.latitude ?? 25.2048,
+          lng: res[0]?.patientAddress?.longitude ?? 55.2708,
+        };
+
         this.mapConfiguration();
+
+        console.log(res);
+        console.log('CENTER', this.center);
+        this.showSuccess(res?.message);
+      },
+      (error: any) => {
+        this.resCoordinates = [];
+        this.center = { lat: 25.2048, lng: 55.2708 }; // Dubai
+
+        this.mapConfiguration();
+
+        console.log(error);
+        this.showError(error?.message);
       }
     );
-
-    // this.coordinatesSub = this.dataShareService.coordinatesReset.subscribe(() => this.resetCoordinates());
   }
 
   mapConfiguration(): void {
     document.getElementById('map-three').innerHTML = '';
-    // Usage Example.
-    // Generates 100 points that is in a 1km radius from the given lat and lng point.
-    var randomGeoPoints = this.generateRandomPoints(
-      this.coordinates,
-      10000,
-      1000
-    ); //[lat: 23.4241, lng: 53.8478] - UAE /
-    console.log('LANG-LOT ', randomGeoPoints);
+    let randomGeoPoints = this.resCoordinates;
+    this.count = randomGeoPoints?.length;
 
-    // this.distanceInput = "40"
-    // this.minDistanceInput = "20"
-    // this.count = 20000;
-    // this.features = new Array(this.count);
-    this.e = 4500000;
-    console.log('GEO POINTS - ', randomGeoPoints.length, randomGeoPoints);
-    this.count = randomGeoPoints.length;
-    let co = [];
-    for (let i = 0; i < this.count; i++) {
-      co.push({ lng: randomGeoPoints[i].lng, lat: randomGeoPoints[i].lat });
+    if (this.count) {
+      let co = [];
+      for (let i = 0; i < this.count; i++) {
+        co.push({
+          lng: randomGeoPoints[i]['patientAddress'].longitude,
+          lat: randomGeoPoints[i]['patientAddress'].latitude,
+        });
+      }
+      console.log('coord - ', co);
+
+      this.features = new Array(this.count);
+      for (var i = 0; i < this.count; ++i) {
+        var coordinates = [parseFloat(co[i].lng), parseFloat(co[i].lat)];
+        this.features[i] = new Feature(
+          new Point(proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857'))
+        );
+      }
     }
-    console.log('coord - ', co);
-
-    // if(randomGeoPoints.length > 0){
-    //   var count = 0;
-    //   let co = [];
-    // for (let key in mapData) {
-    //   count += mapData[key].length;
-    //   mapData[key].forEach((item) => {
-    //     co.push({ lng: item.lng, lat: item.lat });
-    //   });
-    // }
-
-    this.features = new Array(this.count);
-    for (var i = 0; i < this.count; ++i) {
-      var coordinates = [parseFloat(co[i].lng), parseFloat(co[i].lat)];
-      this.features[i] = new Feature(
-        new Point(proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857'))
-      );
-    }
-    // this.features = new Array(randomGeoPoints.length);
-    // for (let i = 0; i < randomGeoPoints.length; i++) {
-    //   const coordinates = [
-    //     randomGeoPoints[i]['lat'],
-    //     randomGeoPoints[i]['lng'],
-    //   ];
-    //   console.log('coord - ', coordinates);
-
-    //   this.features[i] = new Feature(new Point(coordinates));
-    // }
-    // console.log('features - ', this.features);
-
-    // for (let i = 0; i < this.count; ++i) {
-    //   const coordinates = [
-    //     2 * this.e * Math.random() - this.e,
-    //     2 * this.e * Math.random() - this.e,
-    //   ];
-    //   console.log("coord - ", coordinates);
-
-    //   this.features[i] = new Feature(new Point(coordinates));
-    // }
-
-    // console.log("clustor -", this.clusterSource);
-    console.log('features - ', this.features);
 
     var source = new VectorSource({
       features: this.features,
@@ -184,7 +162,7 @@ export class MapThreeComponent implements OnInit, OnDestroy {
       // interactions: [],
       view: new View({
         // center: proj.fromLonLat([144.847275, 13.566806]),
-        center: proj.fromLonLat([this.coordinates.lng, this.coordinates.lat]),
+        center: proj.fromLonLat([this.center.lng, this.center.lat]),
         zoom: 13,
         projection: 'EPSG:3857',
       }),
@@ -192,69 +170,23 @@ export class MapThreeComponent implements OnInit, OnDestroy {
     });
   }
 
-  /**
-   * Generates number of random geolocation points given a center and a radius.
-   * @param  {Object} center A JS object with lat and lng attributes.
-   * @param  {number} radius Radius in meters.
-   * @param {number} count Number of points to generate.
-   * @return {array} Array of Objects with lat and lng attributes.
-   */
-  generateRandomPoints(center, radius, count) {
-    var points = [];
-    for (var i = 0; i < count; i++) {
-      points.push(this.generateRandomPoint(center, radius));
-    }
-    return points;
+  showSuccess(success = 'Data successfully fetched') {
+    this.toastr.success(success, 'Success!', {
+      timeOut: 5000,
+      closeButton: true,
+    });
   }
 
-  /**
-   * Generates number of random geolocation points given a center and a radius.
-   * Reference URL: http://goo.gl/KWcPE.
-   * @param  {Object} center A JS object with lat and lng attributes.
-   * @param  {number} radius Radius in meters.
-   * @return {Object} The generated random points as JS object with lat and lng attributes.
-   */
-  generateRandomPoint(center, radius) {
-    var x0 = center.lng;
-    var y0 = center.lat;
-    // Convert Radius from meters to degrees.
-    var rd = radius / 111300;
-
-    var u = Math.random();
-    var v = Math.random();
-
-    var w = rd * Math.sqrt(u);
-    var t = 2 * Math.PI * v;
-    var x = w * Math.cos(t);
-    var y = w * Math.sin(t);
-
-    var xp = x / Math.cos(y0);
-
-    // Resulting point.
-    return { lat: y + y0, lng: xp + x0 };
-  }
-
-  resetCoordinates(): void {
-    this.emirate = 'dubai';
-    this.coordinates = { lat: 25.2048, lng: 55.2708 };
-    console.log('COORDINATES RESET...');
-    this.logEmirateData();
-  }
-
-  logEmirateData(): void {
-    console.log('Component: Map 3');
-    console.log('Emirate:', this.emirate);
-    console.log('Coordinates:', this.coordinates);
-    console.log('----');
+  showError(error = 'Data could not be fetched') {
+    this.toastr.error(error, 'Error!', {
+      timeOut: 5000,
+      closeButton: true,
+    });
   }
 
   ngOnDestroy(): void {
     if (this.formValueSub) {
       this.formValueSub.unsubscribe();
     }
-
-    // if(this.coordinatesSub) {
-    //   this.coordinatesSub.unsubscribe();
-    // }
   }
 }
