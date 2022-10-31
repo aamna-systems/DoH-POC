@@ -87,4 +87,8 @@ export class DataShareService {
   sendPatientData(formValue) {
     return this.http.post('http://localhost:5000/patient/', formValue);
   }
+
+  getPatientData() {
+    return this.http.get('http://localhost:5000/patient/', {});
+  }
 }
