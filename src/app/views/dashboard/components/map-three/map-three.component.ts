@@ -21,8 +21,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MapThreeComponent implements OnInit, OnDestroy {
   formValue: FilterFormData;
-  private formValueSub: Subscription;
-  // private coordinatesSub: Subscription;
+  private getSub: Subscription;
   private emirate;
   private coordinates;
 
@@ -57,7 +56,7 @@ export class MapThreeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.dataShareService.getPatientData().subscribe(
+    this.getSub = this.dataShareService.getPatientData().subscribe(
       (res: any) => {
         this.resCoordinates = res;
         this.center = {
@@ -185,8 +184,8 @@ export class MapThreeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.formValueSub) {
-      this.formValueSub.unsubscribe();
+    if (this.getSub) {
+      this.getSub.unsubscribe();
     }
   }
 }

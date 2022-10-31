@@ -21,7 +21,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MapTwoComponent implements OnInit {
   formValue: FilterFormData;
-  private formValueSub: Subscription;
+  // private formValueSub: Subscription;
+  private getSub: Subscription;
   // private coordinatesSub: Subscription;
   private emirate;
   private coordinates;
@@ -57,7 +58,7 @@ export class MapTwoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dataShareService.getPatientData().subscribe(
+    this.getSub = this.dataShareService.getPatientData().subscribe(
       (res: any) => {
         this.resCoordinates = res;
         this.center = {
@@ -269,12 +270,12 @@ export class MapTwoComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    if (this.formValueSub) {
-      this.formValueSub.unsubscribe();
-    }
-
-    // if(this.coordinatesSub) {
-    //   this.coordinatesSub.unsubscribe();
+    // if (this.formValueSub) {
+    //   this.formValueSub.unsubscribe();
     // }
+
+    if (this.getSub) {
+      this.getSub.unsubscribe();
+    }
   }
 }
