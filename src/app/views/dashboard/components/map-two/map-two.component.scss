@@ -23,6 +23,12 @@
 }
 
 .overlay-container #zone::after {
+  display: none;
+}
+
+.overlay-container.show-chevron #zone::after {
+  display: inline;
+
   content: "";
   position: absolute;
   margin-left: -10px;

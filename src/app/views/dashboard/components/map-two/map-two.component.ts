@@ -247,6 +247,7 @@ export class MapTwoComponent implements OnInit {
     const zoneEl = document.getElementById('zone');
 
     map.on('click', function (event) {
+      overlayEl.classList.add('show-chevron');
       overlayLayer.setPosition(undefined);
 
       map.forEachFeatureAtPixel(event.pixel, function (feature, layer) {
