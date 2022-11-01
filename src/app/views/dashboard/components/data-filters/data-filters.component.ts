@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { DataShareService } from '../../services/data-share.service';
 @Component({
   selector: 'app-data-filters',
   templateUrl: './data-filters.component.html',
   styleUrls: ['./data-filters.component.scss'],
 })
-export class DataFiltersComponent implements OnInit {
+export class DataFiltersComponent implements OnInit, OnDestroy {
   filterDataForm: FormGroup;
+  private patientRegionSub: Subscription;
+  private schoolRegionSub: Subscription;
+  private occupationRegionSub: Subscription;
 
   /* DROPDOWN */
   dropdownSettings;
@@ -20,6 +24,9 @@ export class DataFiltersComponent implements OnInit {
   residencyStatusList: string[];
   regionList: string[];
   zoneList: string[];
+  patientZoneList: string[];
+  schoolZoneList: string[];
+  occupationZoneList: string[];
   residenceTypeList: string[];
   patientBuildingNameList: string[];
   patientAreaList: string[];
@@ -44,6 +51,7 @@ export class DataFiltersComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
     this.configureDropdowns();
+    this.updateZoneBasedOnRegion();
   }
 
   configureDropdowns(): void {
@@ -93,6 +101,11 @@ export class DataFiltersComponent implements OnInit {
       'Zone 6',
       'Zone 7',
     ];
+
+    this.patientZoneList =
+      this.schoolZoneList =
+      this.occupationZoneList =
+        this.zoneList;
 
     this.residenceTypeList = ['Villa', 'Apartment', 'Hotel'];
 
@@ -224,6 +237,57 @@ export class DataFiltersComponent implements OnInit {
     });
   }
 
+  updateZoneBasedOnRegion(): void {
+    const patientRegion = this.filterDataForm.get('patientAddress.region');
+    const schoolRegion = this.filterDataForm.get('school.region');
+    const occupationRegion = this.filterDataForm.get('occuapation.region');
+
+    const patientZone = this.filterDataForm.get('patientAddress.zone');
+    const schoolZone = this.filterDataForm.get('school.zone');
+    const occupationZone = this.filterDataForm.get('occuapation.zone');
+
+    this.patientRegionSub = patientRegion.valueChanges.subscribe(() => {
+      this.patientZoneList = this.checkRegionSetZone(
+        patientRegion,
+        patientZone
+      );
+    });
+
+    this.schoolRegionSub = schoolRegion.valueChanges.subscribe(() => {
+      this.schoolZoneList = this.checkRegionSetZone(schoolRegion, schoolZone);
+    });
+
+    this.occupationRegionSub = occupationRegion.valueChanges.subscribe(() => {
+      this.occupationZoneList = this.checkRegionSetZone(
+        occupationRegion,
+        occupationZone
+      );
+    });
+  }
+
+  checkRegionSetZone(regionFormControl, zoneFormControl): string[] {
+    const selectedRegionsArray: string[] = regionFormControl.value;
+    let sectionZoneList: string[] = [];
+
+    zoneFormControl.setValue(null);
+
+    selectedRegionsArray.forEach((region) => {
+      if (region === 'Bur Dubai') {
+        sectionZoneList.push('Zone 5');
+      } else if (region === 'Deira') {
+        sectionZoneList.push('Zone 6');
+      } else if (region === 'Jumeirah') {
+        sectionZoneList.push('Zone 2');
+      }
+    });
+
+    if (!sectionZoneList.length) {
+      sectionZoneList = this.zoneList;
+    }
+
+    return sectionZoneList;
+  }
+
   onApplyFilters(): void {
     const formValue = this.filterDataForm.value;
 
@@ -254,5 +318,19 @@ export class DataFiltersComponent implements OnInit {
       timeOut: 5000,
       closeButton: true,
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.patientRegionSub) {
+      this.patientRegionSub.unsubscribe();
+    }
+
+    if (this.schoolRegionSub) {
+      this.schoolRegionSub.unsubscribe();
+    }
+
+    if (this.occupationRegionSub) {
+      this.occupationRegionSub.unsubscribe();
+    }
   }
 }
