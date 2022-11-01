@@ -79,7 +79,8 @@ export class DataFiltersComponent implements OnInit {
       'Tourist',
     ];
 
-    this.regionList = ['ABU DHABI', 'AL AIN', 'AL DHAFRA'];
+    // this.regionList = ['ABU DHABI', 'AL AIN', 'AL DHAFRA'];
+    this.regionList = ['Bur Dubai', 'Deira', 'Jumeirah'];
 
     this.zoneList = [
       'Zone 1',
