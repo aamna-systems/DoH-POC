@@ -9,6 +9,8 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { boundingExtent } from 'ol/extent';
 import * as proj from 'ol/proj';
 import * as layer from 'ol/layer';
+import { Overlay } from 'ol';
+
 import { FilterFormData } from '../../models/filter.model';
 import { DataShareService } from '../../services/data-share.service';
 import { Subscription } from 'rxjs';
@@ -90,19 +92,31 @@ export class MapThreeComponent implements OnInit, OnDestroy {
     if (this.count) {
       let co = [];
       for (let i = 0; i < this.count; i++) {
+        const responseAddress = randomGeoPoints[i]['patientAddress'];
+
         co.push({
-          lng: randomGeoPoints[i]['patientAddress'].longitude,
-          lat: randomGeoPoints[i]['patientAddress'].latitude,
+          lng: responseAddress.longitude,
+          lat: responseAddress.latitude,
         });
       }
-      console.log('coord - ', co);
 
       this.features = new Array(this.count);
       for (var i = 0; i < this.count; ++i) {
+        const responseAddress = randomGeoPoints[i]['patientAddress'];
         var coordinates = [parseFloat(co[i].lng), parseFloat(co[i].lat)];
-        this.features[i] = new Feature(
+
+        let newFeature = new Feature(
           new Point(proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857'))
         );
+
+        newFeature.setProperties({
+          buildingName: responseAddress?.buildingName,
+          street: responseAddress?.streetNumber,
+          area: responseAddress?.area,
+          zone: responseAddress?.zone,
+        });
+
+        this.features[i] = newFeature;
       }
     }
 
@@ -120,7 +134,6 @@ export class MapThreeComponent implements OnInit, OnDestroy {
       source: clusterSource,
       style: function (feature) {
         var size = feature.get('features').length;
-        console.log('size - ', size);
 
         var style = styleCache[size];
         // let color = size >= 100 ? 'green' : 'red';
@@ -166,6 +179,39 @@ export class MapThreeComponent implements OnInit, OnDestroy {
         projection: 'EPSG:3857',
       }),
       // controls: [],
+    });
+
+    /* Vector Feature Popup */
+    const overlayEl = document.getElementById('overlay-container');
+    const overlayLayer = new Overlay({
+      element: overlayEl,
+    });
+
+    map.addOverlay(overlayLayer);
+
+    const buildingNameEl = document.getElementById('building-name');
+    const streetEl = document.getElementById('street');
+    const areaEl = document.getElementById('area');
+    const zoneEl = document.getElementById('zone');
+
+    map.on('click', function (event) {
+      overlayLayer.setPosition(undefined);
+
+      map.forEachFeatureAtPixel(event.pixel, function (feature, layer) {
+        let clickedCoordinate = event.coordinate;
+        let feautureCluster = feature.get('features');
+
+        let clickedBuildingName = feautureCluster[0].get('buildingName');
+        let clickedStreet = feautureCluster[0].get('street');
+        let clickedArea = feautureCluster[0].get('area');
+        let clickedZone = feautureCluster[0].get('zone');
+
+        overlayLayer.setPosition(clickedCoordinate);
+        buildingNameEl.innerHTML = clickedBuildingName;
+        streetEl.innerHTML = clickedStreet;
+        areaEl.innerHTML = clickedArea;
+        zoneEl.innerHTML = clickedZone;
+      });
     });
   }
 
