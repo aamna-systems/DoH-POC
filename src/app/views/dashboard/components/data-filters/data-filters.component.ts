@@ -207,10 +207,10 @@ export class DataFiltersComponent implements OnInit {
         region: new FormControl(null),
         zone: new FormControl(null),
         // typeOfResidence: new FormControl(null),
-        buildingName: new FormControl(null),
-        flatNumber: new FormControl(null),
+        // buildingName: new FormControl(null),
+        // flatNumber: new FormControl(null),
         area: new FormControl(null),
-        streetNumber: new FormControl(null),
+        // streetNumber: new FormControl(null),
       }),
       vaccination: new FormGroup({
         covidVaccineStatus: new FormControl(null),
