@@ -134,12 +134,8 @@ export class DataFiltersComponent implements OnInit {
       'Latifa Tower Building',
     ];
 
-    this.occupationAreaList = [
-      'Zabeel',
-      'Dubai Knowledge Park',
-      'Business Bay',
-      'World Trade Centre',
-    ];
+    // this.occupationAreaList = [ 'Zabeel', 'Dubai Knowledge Park', 'Business Bay', 'World Trade Centre', ];
+    this.occupationAreaList = this.patientAreaList;
 
     this.covidVaccineStatusList = ['Yes', 'No'];
 
