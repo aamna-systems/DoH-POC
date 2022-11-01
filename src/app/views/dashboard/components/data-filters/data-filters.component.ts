@@ -172,7 +172,7 @@ export class DataFiltersComponent implements OnInit {
         Validators.pattern(/^[1-9]+[0-9]*$/),
       ]),
       patientDemographics: new FormGroup({
-        fullname: new FormControl(null),
+        // fullname: new FormControl(null),
         gender: new FormControl(null),
         ageGroup: new FormControl(null),
         dob: new FormControl(null),

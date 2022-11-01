@@ -20,11 +20,11 @@
             <!-- PATIENT DEMOGRAPHICS -->
             <div formGroupName="patientDemographics" class="row">
               <h2 class="mini-title mt-3 mb-3">Patient Demographics</h2>
-              <div class="form-group col-md-4 mb-3">
+              <!-- <div class="form-group col-md-4 mb-3">
                 <label for="full-name">Full Name</label>
                 <input formControlName="fullname" type="text" class="form-control" id="full-name"
                   placeholder="Please enter full name" />
-              </div>
+              </div> -->
               <div class="form-group col-md-4 mb-3">
                 <label for="gender">Gender</label>
                 <ng-multiselect-dropdown formControlName="gender" [placeholder]="'Please select gender'"
@@ -184,7 +184,7 @@
             <div formGroupName="occuapation" class="row">
               <h2 class="mini-title mt-3 mb-3">Occupation</h2>
               <div class="form-group col-md-4 mb-3">
-                <label for="occupation-name">Occupation</label>
+                <label for="occupation-name">Occupation Name</label>
                 <ng-multiselect-dropdown formControlName="occupationName"
                   [placeholder]="'Please select occupation name'" [settings]="dropdownSettings"
                   [data]="occupationNameList" value="item_id">
