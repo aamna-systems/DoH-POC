@@ -23,8 +23,6 @@ import { ToastrService } from 'ngx-toastr';
 export class MapTwoComponent implements OnInit {
   formValue: FilterFormData;
   private getSub: Subscription;
-  private emirate;
-  private coordinates;
 
   public map!: Map;
   public newMap!: Map;
@@ -134,7 +132,7 @@ export class MapTwoComponent implements OnInit {
         if (!style) {
           style = new Style({
             image: new CircleStyle({
-              radius: 16,
+              radius: 18,
               fill: new Fill({
                 color: color,
               }),
