@@ -68,17 +68,12 @@ export class DataFiltersComponent implements OnInit {
 
     this.ageGroupList = ['0-14', '15-19', '20-24', '25-29'];
 
-    this.nationalityList = [
-      'AFGHANISTAN',
-      'ALAND ISLANDS',
-      'ALBANIA',
-      'ALGERIA',
-    ];
+    this.nationalityList = ['UAE', 'India', 'Pakistan', 'Egypt'];
 
     this.residencyStatusList = [
-      'UAE CITIZEN',
-      'RESIDENT EXPATRIATES',
-      'VISITOR',
+      'UAE Citizen',
+      'Resident Expatriate',
+      'Tourist',
     ];
 
     this.regionList = ['ABU DHABI', 'AL AIN', 'AL DHAFRA'];
