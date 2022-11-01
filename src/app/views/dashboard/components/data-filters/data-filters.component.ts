@@ -101,12 +101,7 @@ export class DataFiltersComponent implements OnInit {
       'Garden Homes Frond O',
     ];
 
-    this.patientAreaList = [
-      'Al Mankhool',
-      'Al Barsha',
-      'Deira',
-      'Palm Jumeirah',
-    ];
+    this.patientAreaList = ['Bur Dubai', 'Deira', 'Palm Jumeirah'];
 
     this.schoolAreaList = [
       'Al Qusais',
