@@ -26,6 +26,8 @@ export class DataFiltersComponent implements OnInit {
   // schoolAreaList: string[];
   instituteTypeList: string[];
   schoolNameList: string[];
+  classSectionList: string[];
+  classNumberList: string[];
   occupationNameList: string[];
   employerNameList: string[];
   placeofWorkList: string[];
@@ -113,6 +115,9 @@ export class DataFiltersComponent implements OnInit {
       'Nord Anglia International School',
       'Gems Metropole School',
     ];
+
+    this.classSectionList = ['A', 'B', 'C', 'D'];
+    this.classNumberList = ['1', '2', '3', '4'];
 
     this.occupationNameList = [
       'Procurement Officer',

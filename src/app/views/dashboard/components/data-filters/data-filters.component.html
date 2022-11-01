@@ -124,14 +124,16 @@
                 </ng-multiselect-dropdown>
               </div>
               <div class="form-group col-md-4 mb-3">
-                <label for="class-number">Class Number</label>
-                <input formControlName="classNumber" type="number" class="form-control" id="class-number"
-                  placeholder="Please enter class number" />
+                <label for="class-section">Class Section</label>
+                <ng-multiselect-dropdown formControlName="classSection" [placeholder]="'Please select class section'"
+                  [settings]="dropdownSettings" [data]="classSectionList" value="item_id">
+                </ng-multiselect-dropdown>
               </div>
               <div class="form-group col-md-4 mb-3">
-                <label for="class-section">Class Section</label>
-                <input formControlName="classSection" type="text" class="form-control" id="class-section"
-                  placeholder="Please enter class section" />
+                <label for="class-number">Class Number</label>
+                <ng-multiselect-dropdown formControlName="classNumber" [placeholder]="'Please select class number'"
+                  [settings]="dropdownSettings" [data]="classNumberList" value="item_id">
+                </ng-multiselect-dropdown>
               </div>
               <div class="form-group col-md-4 mb-3">
                 <label for="employer-emirate">Emirate</label>
