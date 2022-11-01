@@ -40,8 +40,10 @@ export class DataFiltersComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+    this.createDropdownLists();
+  }
 
-    /* DROPDOWN */
+  createDropdownLists(): void {
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',
