@@ -180,8 +180,6 @@ export class MapTwoComponent implements OnInit {
     map.addOverlay(overlayLayer);
 
     const buildingNameEl = document.getElementById('building-name');
-    const streetEl = document.getElementById('street');
-    const areaEl = document.getElementById('area');
     const zoneEl = document.getElementById('zone');
 
     map.on('click', function (event) {
@@ -193,14 +191,10 @@ export class MapTwoComponent implements OnInit {
         let feautureCluster = feature.get('features');
 
         let clickedBuildingName = feautureCluster[0].get('buildingName');
-        let clickedStreet = feautureCluster[0].get('street');
-        let clickedArea = feautureCluster[0].get('area');
         let clickedZone = feautureCluster[0].get('zone');
 
         overlayLayer.setPosition(clickedCoordinate);
         buildingNameEl.innerHTML = clickedBuildingName;
-        streetEl.innerHTML = clickedStreet;
-        areaEl.innerHTML = clickedArea;
         zoneEl.innerHTML = clickedZone;
       });
     });
