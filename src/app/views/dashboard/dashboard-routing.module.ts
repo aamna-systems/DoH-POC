@@ -20,13 +20,13 @@ const routes: Routes = [
       title: $localize`International Outbreak`,
     },
   },
-  {
-    path: 'map-three',
-    component: MapThreeComponent,
-    data: {
-      title: $localize`Epidemic Visualization`,
-    },
-  },
+  // {
+  //   path: 'map-three',
+  //   component: MapThreeComponent,
+  //   data: {
+  //     title: $localize`Epidemic Visualization`,
+  //   },
+  // },
 ];
 
 @NgModule({

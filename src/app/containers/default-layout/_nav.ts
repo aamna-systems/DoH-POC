@@ -19,15 +19,15 @@ export const navItems: INavData[] = [
       text: '',
     },
   },
-  {
-    name: 'Epidemic Visualization',
-    url: '/dashboard/map-three',
-    iconComponent: { name: 'cil-chart-pie' },
-    badge: {
-      color: 'info',
-      text: '',
-    },
-  },
+  // {
+  //   name: 'Epidemic Visualization',
+  //   url: '/dashboard/map-three',
+  //   iconComponent: { name: 'cil-chart-pie' },
+  //   badge: {
+  //     color: 'info',
+  //     text: '',
+  //   },
+  // },
   // {
   //   title: true,
   //   name: 'Theme',
