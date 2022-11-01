@@ -13,6 +13,7 @@ export class DataFiltersComponent implements OnInit {
   /* DROPDOWN */
   dropdownSettings;
   emirateList: string[];
+  selectedEmirateList: string[];
   genderList: string[];
   ageGroupList: string[];
   nationalityList: string[];
@@ -55,14 +56,16 @@ export class DataFiltersComponent implements OnInit {
     };
 
     this.emirateList = [
-      'Abu Dhabi',
+      // 'Abu Dhabi',
       'Dubai',
-      'Sharjah',
-      'Ajman',
-      'Umm Al-Quwain',
-      'Fujairah',
-      'Ras Al Khaimah',
+      // 'Sharjah',
+      // 'Ajman',
+      // 'Umm Al-Quwain',
+      // 'Fujairah',
+      // 'Ras Al Khaimah',
     ];
+
+    this.selectedEmirateList = ['Dubai'];
 
     this.genderList = ['Female', 'Male'];
 
