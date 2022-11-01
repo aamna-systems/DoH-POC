@@ -227,7 +227,7 @@ export class MapTwoComponent implements OnInit {
         // center: proj.fromLonLat([144.847275, 13.566806]),
         // center: proj.fromLonLat([55.2708, 25.2048]),
         center: proj.fromLonLat([this.center.lng, this.center.lat]),
-        zoom: 11,
+        zoom: 13,
         projection: 'EPSG:3857',
       }),
       // controls: [],
