@@ -23,7 +23,7 @@ export class DataFiltersComponent implements OnInit {
   residenceTypeList: string[];
   patientBuildingNameList: string[];
   patientAreaList: string[];
-  schoolAreaList: string[];
+  // schoolAreaList: string[];
   instituteTypeList: string[];
   schoolNameList: string[];
   occupationNameList: string[];
@@ -103,12 +103,7 @@ export class DataFiltersComponent implements OnInit {
 
     this.patientAreaList = ['Bur Dubai', 'Deira', 'Palm Jumeirah'];
 
-    this.schoolAreaList = [
-      'Al Qusais',
-      'Al Warqa',
-      'Al Barsha South',
-      'DAMAC Hills',
-    ];
+    // this.schoolAreaList = ['Al Qusais', 'Al Warqa', 'Al Barsha South', 'DAMAC Hills'];
 
     this.instituteTypeList = ['School', 'College', 'University'];
 
@@ -198,10 +193,10 @@ export class DataFiltersComponent implements OnInit {
         region: new FormControl(null),
         zone: new FormControl(null),
         // typeOfResidence: new FormControl(null),
-        buildingName: new FormControl(null),
-        flatNumber: new FormControl(null),
-        area: new FormControl(null),
-        streetNumber: new FormControl(null),
+        // buildingName: new FormControl(null),
+        // flatNumber: new FormControl(null),
+        // area: new FormControl(null),
+        // streetNumber: new FormControl(null),
       }),
       occuapation: new FormGroup({
         occupationName: new FormControl(null),
