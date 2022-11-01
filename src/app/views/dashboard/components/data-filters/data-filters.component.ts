@@ -178,7 +178,7 @@ export class DataFiltersComponent implements OnInit {
         zone: new FormControl(null),
         typeOfResidence: new FormControl(null),
         buildingName: new FormControl(null),
-        apartmentNumber: new FormControl(null),
+        flatNumber: new FormControl(null),
         area: new FormControl(null),
         streetNumber: new FormControl(null),
       }),
