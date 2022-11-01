@@ -89,6 +89,6 @@ export class DataShareService {
   }
 
   getPatientData() {
-    return this.http.get('http://localhost:5000/patient/', {});
+    return this.http.get('http://localhost:5000/patient/allFields', {});
   }
 }
