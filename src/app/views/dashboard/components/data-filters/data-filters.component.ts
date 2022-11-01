@@ -115,17 +115,16 @@ export class DataFiltersComponent implements OnInit {
     ];
 
     this.occupationNameList = [
-      'Driving Instructor',
-      'Administrator',
-      'Airline',
-      'Beauty Salons (Men / Women)',
+      'Procurement Officer',
+      'IT Manager',
+      'HR Manager',
+      'Doctor',
     ];
 
     this.employerNameList = [
-      'Etisalat',
+      'Dubai Health Authority',
       'Microsoft',
-      'TechVista ltd',
-      'TechManindra ltd',
+      'TechVista Systems',
     ];
 
     this.placeofWorkList = [
