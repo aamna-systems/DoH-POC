@@ -3,7 +3,7 @@ import Feature from 'ol/Feature';
 import Map from 'ol/Map';
 import Point from 'ol/geom/Point';
 import View from 'ol/View';
-import { Circle as CircleStyle, Fill, Style, Text } from 'ol/style';
+import { Circle as CircleStyle, Fill, Stroke, Style, Text } from 'ol/style';
 import { Cluster, OSM, Vector as VectorSource } from 'ol/source';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import * as proj from 'ol/proj';
@@ -130,22 +130,25 @@ export class MapTwoComponent implements OnInit {
       style: function (feature) {
         var size = feature.get('features').length;
         var style = styleCache[size];
-        let color = size >= 250 ? 'red' : size >= 100 ? 'orange' : 'green';
-        let rad = size >= 250 ? 20 : size >= 100 ? 15 : 10;
+        let color = size >= 250 ? 'red' : size >= 100 ? '#095e78' : '#007bff';
         if (!style) {
           style = new Style({
             image: new CircleStyle({
-              // radius: 15,
-              radius: rad,
+              radius: 16,
               fill: new Fill({
-                // color: "#007bff",
                 color: color,
+              }),
+              stroke: new Stroke({
+                color: 'rgba(255, 255, 255, 0.8)',
+                width: 4,
               }),
             }),
             text: new Text({
               text: size.toString(),
-              font: 'bold',
-              scale: 1.5,
+              font: 'Normal 15px Monaco',
+              scale: 1.1,
+              textAlign: 'center',
+              textBaseline: 'middle',
               fill: new Fill({
                 color: '#fff',
               }),
