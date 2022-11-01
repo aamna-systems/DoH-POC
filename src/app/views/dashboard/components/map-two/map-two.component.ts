@@ -87,17 +87,17 @@ export class MapTwoComponent implements OnInit {
     if (this.count) {
       let co = [];
       for (let i = 0; i < this.count; i++) {
-        const responseAddress = randomGeoPoints[i]['patientAddress'];
+        const resPatientAddress = randomGeoPoints[i]['patientAddress'];
 
         co.push({
-          lng: responseAddress.longitude,
-          lat: responseAddress.latitude,
+          lng: resPatientAddress.longitude,
+          lat: resPatientAddress.latitude,
         });
       }
 
       this.features = new Array(this.count);
       for (var i = 0; i < this.count; ++i) {
-        const responseAddress = randomGeoPoints[i]['patientAddress'];
+        const resPatientAddress = randomGeoPoints[i]['patientAddress'];
         var coordinates = [parseFloat(co[i].lng), parseFloat(co[i].lat)];
 
         let newFeature = new Feature(
@@ -105,10 +105,10 @@ export class MapTwoComponent implements OnInit {
         );
 
         newFeature.setProperties({
-          buildingName: responseAddress?.buildingName,
-          street: responseAddress?.streetNumber,
-          area: responseAddress?.area,
-          zone: responseAddress?.zone,
+          buildingName: resPatientAddress?.buildingName,
+          street: resPatientAddress?.streetNumber,
+          area: resPatientAddress?.area,
+          zone: resPatientAddress?.zone,
         });
 
         this.features[i] = newFeature;
