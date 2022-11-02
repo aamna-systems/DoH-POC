@@ -30,7 +30,10 @@ export class MapTwoComponent implements OnInit {
   minDistanceInput;
 
   count;
-  features;
+  patientFeatures = [];
+  schoolFeatures = [];
+  occupationFeatures = [];
+  allFeatures;
   e;
   source;
 
@@ -83,20 +86,35 @@ export class MapTwoComponent implements OnInit {
     this.count = randomGeoPoints?.length;
 
     if (this.count) {
-      let co = [];
+      let pCo = []; // All patient coordinates
+      let sCo = []; // All student coordinates
+      let oCo = []; // All occupation coordinates
+
       for (let i = 0; i < this.count; i++) {
         const resPatientAddress = randomGeoPoints[i]['patientAddress'];
+        const resSchoolAddress = randomGeoPoints[i]['school'];
+        const resOccupationAddress = randomGeoPoints[i]['occuapation'];
 
-        co.push({
+        pCo.push({
           lng: resPatientAddress.longitude,
           lat: resPatientAddress.latitude,
         });
+
+        sCo.push({
+          lng: resSchoolAddress.longitude,
+          lat: resSchoolAddress.latitude,
+        });
+
+        oCo.push({
+          lng: resOccupationAddress.longitude,
+          lat: resOccupationAddress.latitude,
+        });
       }
 
-      this.features = new Array(this.count);
-      for (var i = 0; i < this.count; ++i) {
+      // Patient Address
+      for (var i = 0; i < this.count; i++) {
         const resPatientAddress = randomGeoPoints[i]['patientAddress'];
-        var coordinates = [parseFloat(co[i].lng), parseFloat(co[i].lat)];
+        var coordinates = [parseFloat(pCo[i].lng), parseFloat(pCo[i].lat)];
 
         let newFeature = new Feature(
           new Point(proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857'))
@@ -104,22 +122,68 @@ export class MapTwoComponent implements OnInit {
 
         newFeature.setProperties({
           buildingName: resPatientAddress?.buildingName,
-          street: resPatientAddress?.streetNumber,
-          area: resPatientAddress?.area,
           zone: resPatientAddress?.zone,
+          buildingType: 'patient',
         });
 
-        this.features[i] = newFeature;
+        this.patientFeatures.push(newFeature);
       }
+
+      // School Address
+      for (var i = 0; i < this.count; i++) {
+        const resSchoolAddress = randomGeoPoints[i]['school'];
+        var coordinates = [parseFloat(sCo[i].lng), parseFloat(sCo[i].lat)];
+
+        let newFeature = new Feature(
+          new Point(proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857'))
+        );
+
+        newFeature.setProperties({
+          buildingName: resSchoolAddress?.schoolName,
+          zone: resSchoolAddress?.zone,
+          buildingType: 'school',
+        });
+
+        this.schoolFeatures.push(newFeature);
+      }
+
+      // Occupation Address
+      for (var i = 0; i < this.count; i++) {
+        const resOccupationAddress = randomGeoPoints[i]['occuapation'];
+        var coordinates = [parseFloat(oCo[i].lng), parseFloat(oCo[i].lat)];
+        console.log('COOR', coordinates);
+
+        let newFeature = new Feature(
+          new Point(proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857'))
+        );
+
+        newFeature.setProperties({
+          buildingName: resOccupationAddress?.placeOfWork,
+          zone: resOccupationAddress?.zone,
+          buildingType: 'occupation',
+        });
+
+        this.occupationFeatures.push(newFeature);
+      }
+
+      console.log('Patient Features', this.patientFeatures);
+      console.log('School Features', this.schoolFeatures);
+      console.log('Occupation Features', this.occupationFeatures);
     }
 
-    var source = new VectorSource({
-      features: this.features,
+    this.allFeatures = [
+      ...this.patientFeatures,
+      ...this.schoolFeatures,
+      ...this.occupationFeatures,
+    ];
+
+    var allSources = new VectorSource({
+      features: this.allFeatures,
     });
 
     var clusterSource = new Cluster({
       distance: parseInt('60'),
-      source: source,
+      source: allSources,
     });
 
     var styleCache = {};
@@ -128,7 +192,38 @@ export class MapTwoComponent implements OnInit {
       style: function (feature) {
         var size = feature.get('features').length;
         var style = styleCache[size];
-        let color = size >= 250 ? 'red' : size >= 100 ? '#095e78' : '#007bff';
+
+        let featureCluster = feature.get('features');
+        let buildingType: string = featureCluster[0].get('buildingType');
+        let previousBuildingType: string = buildingType;
+        let isClusterOfSameType: boolean = true;
+
+        for (let i = 0; i < featureCluster.length; i++) {
+          let currenttBuildingType = featureCluster[i].get('buildingType');
+
+          if (currenttBuildingType !== previousBuildingType) {
+            isClusterOfSameType = false;
+            break;
+          }
+
+          previousBuildingType = currenttBuildingType;
+          isClusterOfSameType = true;
+        }
+
+        let color: string;
+
+        if (buildingType === 'patient') {
+          color = '#0c63e7'; //blue
+        } else if (buildingType === 'school') {
+          color = '#8900f2'; //purple
+        } else if (buildingType === 'occupation') {
+          color = '#ff00c1'; //pink
+        }
+
+        if (!isClusterOfSameType) {
+          color = 'black'; //cluster of several building types
+        }
+
         if (!style) {
           style = new Style({
             image: new CircleStyle({
