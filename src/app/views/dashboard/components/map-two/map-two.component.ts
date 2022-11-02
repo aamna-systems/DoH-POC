@@ -190,10 +190,10 @@ export class MapTwoComponent implements OnInit {
     var clusters = new layer.Vector({
       source: clusterSource,
       style: function (feature) {
-        var size = feature.get('features').length;
+        let featureCluster = feature.get('features');
+        var size = featureCluster.length;
         var style = styleCache[size];
 
-        let featureCluster = feature.get('features');
         let buildingType: string = featureCluster[0].get('buildingType');
         let previousBuildingType: string = buildingType;
         let isClusterOfSameType: boolean = true;
