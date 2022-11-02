@@ -9,6 +9,10 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import * as proj from 'ol/proj';
 import * as layer from 'ol/layer';
 import { Overlay } from 'ol';
+import { easeOut } from 'ol/easing';
+import { fromLonLat } from 'ol/proj';
+import { getVectorContext } from 'ol/render';
+import { unByKey } from 'ol/Observable';
 
 import { FilterFormData } from '../../models/filter.model';
 import { DataShareService } from '../../services/data-share.service';
