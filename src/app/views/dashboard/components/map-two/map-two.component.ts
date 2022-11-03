@@ -295,7 +295,7 @@ export class MapTwoComponent implements OnInit, OnDestroy {
             radius: radius,
             stroke: new Stroke({
               color: 'rgba(255, 0, 0, ' + opacity + ')',
-              width: 0.25 + opacity,
+              width: 0.75 + opacity,
             }),
           }),
         });
