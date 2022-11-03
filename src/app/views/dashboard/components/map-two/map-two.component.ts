@@ -229,7 +229,7 @@ export class MapTwoComponent implements OnInit, OnDestroy {
         // if (!style) {
         style = new Style({
           image: new CircleStyle({
-            radius: 18,
+            radius: 23,
             fill: new Fill({
               color: color,
             }),
