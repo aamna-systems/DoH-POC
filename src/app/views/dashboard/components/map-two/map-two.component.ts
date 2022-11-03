@@ -337,17 +337,12 @@ export class MapTwoComponent implements OnInit, OnDestroy {
             flash(feature);
           }
         }
+
+        map.render();
       });
     }
 
-    // allSources.on('featuresloadend', function (e) {
-    //   console.log('featuresloadend');
-
-    //   flash(e.feature);
-    //   map.render();
-    // });
-
-    this.animationInterval = window.setInterval(addAnimationToFeature, 3000);
+    this.animationInterval = window.setInterval(addAnimationToFeature, 2000);
 
     /* Vector Feature Popup */
     const overlayEl = document.getElementById('overlay-container');
