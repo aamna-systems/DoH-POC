@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FooterComponent } from '@coreui/angular';
 import { Subscription } from 'rxjs';
@@ -10,18 +10,20 @@ import { Subscription } from 'rxjs';
 })
 export class DefaultFooterComponent
   extends FooterComponent
-  implements OnInit, OnDestroy
+  implements OnDestroy
 {
   private routerSub: Subscription;
   showLegend: boolean = false;
 
   constructor(private router: Router) {
     super();
-  }
 
-  ngOnInit(): void {
     this.routerSub = this.router.events.subscribe(() => {
-      this.showLegend = this.router.url.includes('map') ? true : false;
+      if (this.router.url.includes('two')) {
+        this.showLegend = true;
+      } else {
+        this.showLegend = false;
+      }
     });
   }
 
