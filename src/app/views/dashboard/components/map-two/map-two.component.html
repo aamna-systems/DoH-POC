@@ -1,3 +1,8 @@
+<div class="custom-spinner" *ngIf="!isMapLoaded">
+  <c-spinner aria-hidden="true" size="sm" variant="grow"></c-spinner>
+  &nbsp;Loading...
+</div>
+
 <div id="map-two" class="map-two"></div>
 <div class="overlay-container" id="overlay-container">
   <div>&nbsp;<b>Building: </b><span class="overlay-text" id="building-name"></span></div>

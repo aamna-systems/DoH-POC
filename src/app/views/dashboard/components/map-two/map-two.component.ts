@@ -27,6 +27,8 @@ export class MapTwoComponent implements OnInit, OnDestroy {
   formValue: FilterFormData;
   private getSub: Subscription;
   private animationInterval;
+  isMapLoaded: boolean = false;
+
   public map!: Map;
   public newMap!: Map;
   distanceInput;
@@ -264,6 +266,8 @@ export class MapTwoComponent implements OnInit, OnDestroy {
         projection: 'EPSG:3857',
       }),
     });
+
+    this.isMapLoaded = true;
 
     /* Feature Animation */
     function flash(feature, duration = 3000) {

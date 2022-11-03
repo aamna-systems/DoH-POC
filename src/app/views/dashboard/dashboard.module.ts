@@ -11,6 +11,7 @@ import {
   GridModule,
   NavModule,
   ProgressModule,
+  SpinnerModule,
   TableModule,
   TabsModule,
 } from '@coreui/angular';
@@ -51,6 +52,7 @@ import { DataShareService } from './services/data-share.service';
     TableModule,
     WidgetsModule,
     NgMultiSelectDropDownModule.forRoot(),
+    SpinnerModule,
   ],
   declarations: [
     DashboardComponent,
