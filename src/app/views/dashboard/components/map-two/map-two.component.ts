@@ -27,7 +27,6 @@ import { ToastrService } from 'ngx-toastr';
 export class MapTwoComponent implements OnInit {
   formValue: FilterFormData;
   private getSub: Subscription;
-
   public map!: Map;
   public newMap!: Map;
   distanceInput;
@@ -197,6 +196,7 @@ export class MapTwoComponent implements OnInit {
         let featureCluster = feature.get('features');
         var size = featureCluster.length;
         var style = styleCache[size];
+        console.log(style);
 
         let buildingType: string = featureCluster[0].get('buildingType');
         let previousBuildingType: string = buildingType;
@@ -216,43 +216,47 @@ export class MapTwoComponent implements OnInit {
 
         let color: string;
 
-        if (buildingType === 'patient') {
-          color = '#0c63e7'; //blue
-        } else if (buildingType === 'school') {
-          color = '#8900f2'; //purple
-        } else if (buildingType === 'occupation') {
-          color = '#ff00c1'; //pink
-        }
-
-        if (!isClusterOfSameType) {
+        if (isClusterOfSameType) {
+          if (buildingType === 'patient') {
+            color = '#0c63e7'; //blue
+          } else if (buildingType === 'school') {
+            color = '#8900f2'; //purple
+          } else if (buildingType === 'occupation') {
+            color = '#ff00c1'; //pink
+          } else {
+            color = '#8900f2'; //purple
+          }
+        } else {
           color = 'black'; //cluster of several building types
         }
 
-        if (!style) {
-          style = new Style({
-            image: new CircleStyle({
-              radius: 18,
-              fill: new Fill({
-                color: color,
-              }),
-              stroke: new Stroke({
-                color: 'rgba(255, 255, 255, 0.8)',
-                width: 4,
-              }),
+        console.log(buildingType);
+
+        // if (!style) {
+        style = new Style({
+          image: new CircleStyle({
+            radius: 18,
+            fill: new Fill({
+              color: color,
             }),
-            text: new Text({
-              text: size.toString(),
-              font: 'Normal 15px Monaco',
-              scale: 1.1,
-              textAlign: 'center',
-              textBaseline: 'middle',
-              fill: new Fill({
-                color: '#fff',
-              }),
+            stroke: new Stroke({
+              color: 'rgba(255, 255, 255, 0.8)',
+              width: 4,
             }),
-          });
-          styleCache[size] = style;
-        }
+          }),
+          text: new Text({
+            text: size.toString(),
+            font: 'Normal 15px Monaco',
+            scale: 1.1,
+            textAlign: 'center',
+            textBaseline: 'middle',
+            fill: new Fill({
+              color: '#fff',
+            }),
+          }),
+        });
+        styleCache[size] = style;
+        // }
         return style;
       },
     });
@@ -270,6 +274,127 @@ export class MapTwoComponent implements OnInit {
         projection: 'EPSG:3857',
       }),
     });
+
+    /* Feature Animation */
+    function flash(feature, duration = 3000) {
+      const start = Date.now();
+      const flashGeom = feature.getGeometry().clone();
+      const listenerKey = raster.on('postrender', animate);
+
+      function animate(event) {
+        const frameState = event.frameState;
+        const elapsed = frameState.time - start;
+        if (elapsed >= duration) {
+          unByKey(listenerKey);
+          return;
+        }
+
+        const vectorContext = getVectorContext(event);
+        const elapsedRatio = elapsed / duration;
+        // radius will be 5 at start and 30 at end.
+        const radius = easeOut(elapsedRatio) * 25 + 5;
+        const opacity = easeOut(1 - elapsedRatio);
+
+        const style = new Style({
+          image: new CircleStyle({
+            radius: radius,
+            stroke: new Stroke({
+              color: 'rgba(255, 0, 0, ' + opacity + ')',
+              width: 0.25 + opacity,
+            }),
+          }),
+        });
+
+        vectorContext.setStyle(style);
+        vectorContext.drawGeometry(flashGeom);
+        // tell OpenLayers to continue postrender animation
+        map.render();
+      }
+    }
+
+    function addRandomFeature() {
+      // const x = Math.random() * 360 - 180;
+      // const y = Math.random() * 170 - 85;
+      // const geom = new Point(fromLonLat([x, y]));
+      // const feature = new Feature(geom);
+      // clusterSource.addFeature(feature);
+
+      clusterSource.forEachFeature((feature) => {
+        console.log('hi');
+        let featureCluster = feature.get('features');
+        var size = featureCluster.length;
+
+        let buildingType: string = featureCluster[0].get('buildingType');
+        let previousBuildingType: string = buildingType;
+        let isClusterOfSameType: boolean = true;
+
+        for (let i = 0; i < featureCluster.length; i++) {
+          let currenttBuildingType = featureCluster[i].get('buildingType');
+
+          if (currenttBuildingType !== previousBuildingType) {
+            isClusterOfSameType = false;
+            break;
+          }
+
+          previousBuildingType = currenttBuildingType;
+          isClusterOfSameType = true;
+        }
+
+        if (isClusterOfSameType) {
+          if (buildingType === 'patient' && size > 4) {
+            // color = '#0c63e7'; //blue
+            flash(feature);
+          } else if (buildingType === 'school' && size > 4) {
+            // color = '#8900f2'; //purple
+            flash(feature);
+          } else if (buildingType === 'occupation' && size > 4) {
+            // color = '#ff00c1'; //pink
+            flash(feature);
+          }
+          // flash(feature);
+        }
+      });
+    }
+
+    // clusterSource.on('addfeature', function (e) {
+    //   flash(e.feature);
+    // });
+
+    // clusterSource.on('featuresloadstart', function (e) {
+    //   flash(e.feature);
+    // });
+
+    clusterSource.on('changefeature', function (e) {
+      flash(e.feature);
+      map.render();
+    });
+
+    window.setInterval(addRandomFeature, 3000);
+
+    // var marker = new Feature(new Point([0, 0]));
+
+    // function hello() {
+    // var vectorLayer = new layer.Vector({
+    //   source: clusterSource,
+    //   style: function (feature) {
+    //     setInterval(() => {
+    //       flash(feature);
+    //       map.render();
+    //     }, 3000);
+    //   },
+    // });
+
+    // map.addLayer(vectorLayer);
+    // }
+    // flash(marker, 2000);
+    // window.setInterval(() => {
+    //   flash(feature);
+    // }, 3000);
+
+    // function make_point_flash() {
+    //   map.render();
+    //   flash(locationPoint, 2000);
+    // }
 
     /* Vector Feature Popup */
     const overlayEl = document.getElementById('overlay-container');
