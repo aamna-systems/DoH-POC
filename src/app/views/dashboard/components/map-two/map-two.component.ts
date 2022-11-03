@@ -66,8 +66,7 @@ export class MapTwoComponent implements OnInit, OnDestroy {
 
         this.mapConfiguration();
 
-        console.log(res);
-        console.log('CENTER', this.center);
+        console.log('Center', this.center);
 
         this.showSuccess(res?.message);
       },
@@ -167,10 +166,6 @@ export class MapTwoComponent implements OnInit, OnDestroy {
 
         this.occupationFeatures.push(newFeature);
       }
-
-      console.log('Patient Features', this.patientFeatures);
-      console.log('School Features', this.schoolFeatures);
-      console.log('Occupation Features', this.occupationFeatures);
     }
 
     this.allFeatures = [
