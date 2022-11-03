@@ -10,7 +10,6 @@ import * as proj from 'ol/proj';
 import * as layer from 'ol/layer';
 import { Overlay } from 'ol';
 import { easeOut } from 'ol/easing';
-import { fromLonLat } from 'ol/proj';
 import { getVectorContext } from 'ol/render';
 import { unByKey } from 'ol/Observable';
 
@@ -223,8 +222,6 @@ export class MapTwoComponent implements OnInit {
             color = '#8900f2'; //purple
           } else if (buildingType === 'occupation') {
             color = '#ff00c1'; //pink
-          } else {
-            color = '#8900f2'; //purple
           }
         } else {
           color = 'black'; //cluster of several building types
@@ -255,6 +252,7 @@ export class MapTwoComponent implements OnInit {
             }),
           }),
         });
+
         styleCache[size] = style;
         // }
         return style;
@@ -312,13 +310,7 @@ export class MapTwoComponent implements OnInit {
       }
     }
 
-    function addRandomFeature() {
-      // const x = Math.random() * 360 - 180;
-      // const y = Math.random() * 170 - 85;
-      // const geom = new Point(fromLonLat([x, y]));
-      // const feature = new Feature(geom);
-      // clusterSource.addFeature(feature);
-
+    function addAnimationToFeature() {
       clusterSource.forEachFeature((feature) => {
         console.log('hi');
         let featureCluster = feature.get('features');
@@ -342,59 +334,22 @@ export class MapTwoComponent implements OnInit {
 
         if (isClusterOfSameType) {
           if (buildingType === 'patient' && size > 4) {
-            // color = '#0c63e7'; //blue
             flash(feature);
           } else if (buildingType === 'school' && size > 4) {
-            // color = '#8900f2'; //purple
             flash(feature);
           } else if (buildingType === 'occupation' && size > 4) {
-            // color = '#ff00c1'; //pink
             flash(feature);
           }
-          // flash(feature);
         }
       });
     }
-
-    // clusterSource.on('addfeature', function (e) {
-    //   flash(e.feature);
-    // });
-
-    // clusterSource.on('featuresloadstart', function (e) {
-    //   flash(e.feature);
-    // });
 
     clusterSource.on('changefeature', function (e) {
       flash(e.feature);
       map.render();
     });
 
-    window.setInterval(addRandomFeature, 3000);
-
-    // var marker = new Feature(new Point([0, 0]));
-
-    // function hello() {
-    // var vectorLayer = new layer.Vector({
-    //   source: clusterSource,
-    //   style: function (feature) {
-    //     setInterval(() => {
-    //       flash(feature);
-    //       map.render();
-    //     }, 3000);
-    //   },
-    // });
-
-    // map.addLayer(vectorLayer);
-    // }
-    // flash(marker, 2000);
-    // window.setInterval(() => {
-    //   flash(feature);
-    // }, 3000);
-
-    // function make_point_flash() {
-    //   map.render();
-    //   flash(locationPoint, 2000);
-    // }
+    window.setInterval(addAnimationToFeature, 3000);
 
     /* Vector Feature Popup */
     const overlayEl = document.getElementById('overlay-container');
