@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import Feature from 'ol/Feature';
 import Map from 'ol/Map';
 import Point from 'ol/geom/Point';
@@ -23,9 +23,10 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './map-two.component.html',
   styleUrls: ['./map-two.component.scss'],
 })
-export class MapTwoComponent implements OnInit {
+export class MapTwoComponent implements OnInit, OnDestroy {
   formValue: FilterFormData;
   private getSub: Subscription;
+  private animationInterval;
   public map!: Map;
   public newMap!: Map;
   distanceInput;
@@ -153,7 +154,6 @@ export class MapTwoComponent implements OnInit {
       for (var i = 0; i < this.count; i++) {
         const resOccupationAddress = randomGeoPoints[i]['occuapation'];
         var coordinates = [parseFloat(oCo[i].lng), parseFloat(oCo[i].lat)];
-        console.log('COOR', coordinates);
 
         let newFeature = new Feature(
           new Point(proj.transform(coordinates, 'EPSG:4326', 'EPSG:3857'))
@@ -195,7 +195,6 @@ export class MapTwoComponent implements OnInit {
         let featureCluster = feature.get('features');
         var size = featureCluster.length;
         var style = styleCache[size];
-        console.log(style);
 
         let buildingType: string = featureCluster[0].get('buildingType');
         let previousBuildingType: string = buildingType;
@@ -226,8 +225,6 @@ export class MapTwoComponent implements OnInit {
         } else {
           color = 'black'; //cluster of several building types
         }
-
-        console.log(buildingType);
 
         // if (!style) {
         style = new Style({
@@ -312,7 +309,6 @@ export class MapTwoComponent implements OnInit {
 
     function addAnimationToFeature() {
       clusterSource.forEachFeature((feature) => {
-        console.log('hi');
         let featureCluster = feature.get('features');
         var size = featureCluster.length;
 
@@ -344,12 +340,14 @@ export class MapTwoComponent implements OnInit {
       });
     }
 
-    clusterSource.on('changefeature', function (e) {
-      flash(e.feature);
-      map.render();
-    });
+    // allSources.on('featuresloadend', function (e) {
+    //   console.log('featuresloadend');
 
-    window.setInterval(addAnimationToFeature, 3000);
+    //   flash(e.feature);
+    //   map.render();
+    // });
+
+    this.animationInterval = window.setInterval(addAnimationToFeature, 3000);
 
     /* Vector Feature Popup */
     const overlayEl = document.getElementById('overlay-container');
@@ -397,6 +395,10 @@ export class MapTwoComponent implements OnInit {
   ngOnDestroy(): void {
     if (this.getSub) {
       this.getSub.unsubscribe();
+    }
+
+    if (this.animationInterval) {
+      clearInterval(this.animationInterval);
     }
   }
 }
