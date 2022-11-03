@@ -286,8 +286,7 @@ export class MapTwoComponent implements OnInit, OnDestroy {
 
         const vectorContext = getVectorContext(event);
         const elapsedRatio = elapsed / duration;
-        // radius will be 5 at start and 30 at end.
-        const radius = easeOut(elapsedRatio) * 25 + 5;
+        const radius = easeOut(elapsedRatio) * 25 + 5; // radius will be 5 at start and 30 at end
         const opacity = easeOut(1 - elapsedRatio);
 
         const style = new Style({
@@ -302,8 +301,7 @@ export class MapTwoComponent implements OnInit, OnDestroy {
 
         vectorContext.setStyle(style);
         vectorContext.drawGeometry(flashGeom);
-        // tell OpenLayers to continue postrender animation
-        map.render();
+        map.render(); // tell OpenLayers to continue postrender animation
       }
     }
 
@@ -344,7 +342,7 @@ export class MapTwoComponent implements OnInit, OnDestroy {
 
     this.animationInterval = window.setInterval(addAnimationToFeature, 2000);
 
-    /* Vector Feature Popup */
+    /* Feature Popup */
     const overlayEl = document.getElementById('overlay-container');
     const overlayLayer = new Overlay({
       element: overlayEl,
