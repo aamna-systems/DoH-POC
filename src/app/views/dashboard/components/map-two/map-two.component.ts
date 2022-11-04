@@ -339,7 +339,7 @@ export class MapTwoComponent implements OnInit, OnDestroy {
       });
     }
 
-    this.animationInterval = window.setInterval(addAnimationToFeature, 2000);
+    this.animationInterval = window.setInterval(addAnimationToFeature, 1500);
 
     /* Feature Popup */
     const overlayEl = document.getElementById('overlay-container');
