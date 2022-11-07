@@ -197,7 +197,7 @@ export class MapTwoComponent implements OnInit, OnDestroy {
         let previousBuildingType: string = buildingType;
         let isClusterOfSameType: boolean = true;
 
-        for (let i = 0; i < featureCluster.length; i++) {
+        for (let i = 1; i < featureCluster.length; i++) {
           let currenttBuildingType = featureCluster[i].get('buildingType');
 
           if (currenttBuildingType !== previousBuildingType) {
